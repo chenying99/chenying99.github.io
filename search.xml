@@ -3,29 +3,6 @@
   
     
     <entry>
-      <title>自动部署测试223</title>
-      <link href="/2020/11/22/%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2%E6%B5%8B%E8%AF%95/"/>
-      <url>/2020/11/22/%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2%E6%B5%8B%E8%AF%95/</url>
-      <content type="html"><![CDATA[<p>opencv官方自带了人脸识别的模型，这里测试一下效果<br><figure class="hljs highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 人脸识别测试</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> args</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">CascadeClassifier classifier = <span class="keyword">new</span> CascadeClassifier(<span class="string">"haarcascade_frontalface_alt.xml"</span>);</span><br><span class="line"></span><br><span class="line">Mat image = Imgcodecs.imread(<span class="string">"images/chuanpu.png"</span>);</span><br><span class="line"></span><br><span class="line">MatOfRect faces = <span class="keyword">new</span> MatOfRect();</span><br><span class="line">classifier.detectMultiScale(image, faces);</span><br><span class="line"></span><br><span class="line">Rect[] rects = faces.toArray();</span><br><span class="line"></span><br><span class="line">System.out.println(<span class="string">"识别人脸数："</span> + rects.length);</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; rects.length; i++) &#123;</span><br><span class="line">Imgproc.rectangle(image, <span class="keyword">new</span> Point(rects[i].x, rects[i].y),</span><br><span class="line"><span class="keyword">new</span> Point(rects[i].x + rects[i].width, rects[i].y + rects[i].height), <span class="keyword">new</span> Scalar(<span class="number">0</span>, <span class="number">0</span>, <span class="number">255</span>), <span class="number">1</span>);</span><br><span class="line">Imgproc.putText(image, <span class="string">"Human"</span>, <span class="keyword">new</span> Point(rects[i].x, rects[i].y), Imgproc.FONT_HERSHEY_PLAIN, <span class="number">1.0</span>,</span><br><span class="line"><span class="keyword">new</span> Scalar(<span class="number">0</span>, <span class="number">255</span>, <span class="number">0</span>), <span class="number">1</span>, Imgproc.LINE_AA, <span class="keyword">false</span>);</span><br><span class="line">&#125;</span><br><span class="line">imwrite(<span class="string">"output/face2.png"</span>, image);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><p><img src="/images/face6.png" alt=""> </p>]]></content>
-      
-      <categories>
-          
-          <category> opencv </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> 图像处理 </tag>
-            
-            <tag> opencv </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    <entry>
       <title>图像搜索、以图搜图测试更新版</title>
       <link href="/2020/09/08/%E5%9B%BE%E5%83%8F%E6%90%9C%E7%B4%A2%E3%80%81%E4%BB%A5%E5%9B%BE%E6%90%9C%E5%9B%BE%E6%B5%8B%E8%AF%95%E6%9B%B4%E6%96%B0%E7%89%88/"/>
       <url>/2020/09/08/%E5%9B%BE%E5%83%8F%E6%90%9C%E7%B4%A2%E3%80%81%E4%BB%A5%E5%9B%BE%E6%90%9C%E5%9B%BE%E6%B5%8B%E8%AF%95%E6%9B%B4%E6%96%B0%E7%89%88/</url>
