@@ -129,6 +129,63 @@
   
   <article class="article post card" itemscope itemtype="http://schema.org/Article">
     <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/01/opencv4-0-0图像处理：图像直方图（七）/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="hedgehog">
+        <meta itemprop="description" content="程序爱好者">
+        <meta itemprop="image" content="/images/avatar.png">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="chenying99'blog">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2019/06/01/opencv4-0-0图像处理：图像直方图（七）/" itemprop="url">opencv4.0.0图像处理：图像直方图（七）</a>
+      </h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2019-06-01T17:00:17+08:00">2019-06-01 17:00:17</time></span>
+        </span>
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-categories">
+          
+          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/opencv/" itemprop="url" rel="index"><span itemprop="name">opencv</span></a></span>
+        </span>
+        
+        
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      
+      <p>图像直方图反映了图像像素的密度分布,下面是BGR图像三通道的直方图测试 </p>
+<figure class="hljs highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        </span><br><span class="line">        Mat hello =Imgcodecs.imread(<span class="string">"data/lena.jpg"</span>);        </span><br><span class="line">        List&lt;Mat&gt; bgrPlanes = <span class="keyword">new</span> ArrayList&lt;&gt;();        </span><br><span class="line">        Core.split(hello, bgrPlanes);        </span><br><span class="line">        </span><br><span class="line">        MatOfFloat histRange = <span class="keyword">new</span> MatOfFloat(<span class="number">0</span>, <span class="number">256</span>);</span><br><span class="line">        <span class="keyword">int</span> histSize = <span class="number">256</span>;</span><br><span class="line">        <span class="comment">//MatOfInt channels = new MatOfInt(0);</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">boolean</span> accumulate = <span class="keyword">false</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">//Mat histImg1 = new Mat();        </span></span><br><span class="line">        Mat bHist = <span class="keyword">new</span> Mat(), gHist = <span class="keyword">new</span> Mat(), rHist = <span class="keyword">new</span> Mat();</span><br><span class="line">        </span><br><span class="line">        Imgproc.calcHist(bgrPlanes, <span class="keyword">new</span> MatOfInt(<span class="number">0</span>), <span class="keyword">new</span> Mat(), bHist, <span class="keyword">new</span> MatOfInt(histSize),histRange,accumulate);</span><br><span class="line">        Imgproc.calcHist(bgrPlanes, <span class="keyword">new</span> MatOfInt(<span class="number">1</span>), <span class="keyword">new</span> Mat(), gHist, <span class="keyword">new</span> MatOfInt(histSize), histRange, accumulate);</span><br><span class="line">        Imgproc.calcHist(bgrPlanes, <span class="keyword">new</span> MatOfInt(<span class="number">2</span>), <span class="keyword">new</span> Mat(), rHist, <span class="keyword">new</span> MatOfInt(histSize), histRange, accumulate);        </span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span> histW = <span class="number">512</span>, histH = <span class="number">400</span>;</span><br><span class="line">        <span class="keyword">int</span> binW = (<span class="keyword">int</span>) Math.round((<span class="keyword">double</span>) histW / histSize);</span><br><span class="line"></span><br><span class="line">        Mat histImage = <span class="keyword">new</span> Mat( histH, histW, CvType.CV_8UC3, <span class="keyword">new</span> Scalar( <span class="number">255</span>,<span class="number">255</span>,<span class="number">255</span>) );        </span><br><span class="line">       </span><br><span class="line">        Core.normalize(bHist, bHist, <span class="number">0</span>, histImage.rows()-<span class="number">20</span>, Core.NORM_MINMAX);</span><br><span class="line">        Core.normalize(gHist, gHist, <span class="number">0</span>, histImage.rows()-<span class="number">20</span>, Core.NORM_MINMAX);</span><br><span class="line">        Core.normalize(rHist, rHist, <span class="number">0</span>, histImage.rows()-<span class="number">20</span>, Core.NORM_MINMAX);</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">float</span>[] bHistData = <span class="keyword">new</span> <span class="keyword">float</span>[(<span class="keyword">int</span>) (bHist.total() * bHist.channels())];</span><br><span class="line">        bHist.get(<span class="number">0</span>, <span class="number">0</span>, bHistData);</span><br><span class="line">        System.out.println(Arrays.toString(bHistData));</span><br><span class="line">        <span class="keyword">float</span>[] gHistData = <span class="keyword">new</span> <span class="keyword">float</span>[(<span class="keyword">int</span>) (gHist.total() * gHist.channels())];</span><br><span class="line">        gHist.get(<span class="number">0</span>, <span class="number">0</span>, gHistData);</span><br><span class="line">        <span class="keyword">float</span>[] rHistData = <span class="keyword">new</span> <span class="keyword">float</span>[(<span class="keyword">int</span>) (rHist.total() * rHist.channels())];</span><br><span class="line">        rHist.get(<span class="number">0</span>, <span class="number">0</span>, rHistData);</span><br><span class="line">       </span><br><span class="line">        <span class="keyword">for</span>( <span class="keyword">int</span> i = <span class="number">1</span>; i &lt; histSize; i++ ) &#123;            </span><br><span class="line">            Imgproc.line(histImage, <span class="keyword">new</span> Point(binW * (i - <span class="number">1</span>), histH - Math.round(bHistData[i - <span class="number">1</span>])),<span class="keyword">new</span> Point(binW * (i), histH - Math.round(bHistData[i])), <span class="keyword">new</span> Scalar(<span class="number">255</span>, <span class="number">0</span>, <span class="number">0</span>), <span class="number">2</span>);</span><br><span class="line">            Imgproc.line(histImage, <span class="keyword">new</span> Point(binW * (i - <span class="number">1</span>), histH - Math.round(gHistData[i - <span class="number">1</span>])),<span class="keyword">new</span> Point(binW * (i), histH - Math.round(gHistData[i])), <span class="keyword">new</span> Scalar(<span class="number">0</span>, <span class="number">255</span>, <span class="number">0</span>), <span class="number">2</span>);</span><br><span class="line">            Imgproc.line(histImage, <span class="keyword">new</span> Point(binW * (i - <span class="number">1</span>), histH - Math.round(rHistData[i - <span class="number">1</span>])),<span class="keyword">new</span> Point(binW * (i), histH - Math.round(rHistData[i])), <span class="keyword">new</span> Scalar(<span class="number">0</span>, <span class="number">0</span>, <span class="number">255</span>), <span class="number">2</span>);</span><br><span class="line">        &#125;        </span><br><span class="line">        </span><br><span class="line">        <span class="comment">//imshow(histImage, "histImage");</span></span><br><span class="line">        HighGui.imshow(<span class="string">"histImage"</span>, histImage);</span><br><span class="line">        HighGui.imshow(<span class="string">"hello"</span>, hello);</span><br><span class="line">        HighGui.waitKey(<span class="number">0</span>);</span><br><span class="line">        System.exit(<span class="number">0</span>);</span><br><span class="line">    </span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/images/lena.jpg" alt=""><br><img src="/images/601.png" alt=""><br>观察上面的直方图可以看到，blue通道与green通道的直方图偏向左边，而red通道的直方图偏向右边；如果我们显示单通道的图像，估计blue通道与green通道的图像偏黑，而red通道的图像偏白<br><img src="/images/1920.png" alt=""></p>
+
+      
+    </main>
+    <footer class="post-footer">
+      
+      <div class="post-tags">
+        
+        <a class="post-tag button" href="/tags/opencv/" rel="tag"><i class="fas fa-tags"></i>opencv</a>
+        
+        <a class="post-tag button" href="/tags/图像处理/" rel="tag"><i class="fas fa-tags"></i>图像处理</a>
+        
+      </div>
+      
+    </footer>
+  </article>
+  
+  <article class="article post card" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
       <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/26/opencv4-0-0图像处理：运动目标检测（六）/">
       <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
         <meta itemprop="name" content="hedgehog">
@@ -174,9 +231,9 @@
       
       <div class="post-tags">
         
-        <a class="post-tag button" href="/tags/图像处理/" rel="tag"><i class="fas fa-tags"></i>图像处理</a>
-        
         <a class="post-tag button" href="/tags/opencv/" rel="tag"><i class="fas fa-tags"></i>opencv</a>
+        
+        <a class="post-tag button" href="/tags/图像处理/" rel="tag"><i class="fas fa-tags"></i>图像处理</a>
         
       </div>
       
@@ -236,9 +293,9 @@
       
       <div class="post-tags">
         
-        <a class="post-tag button" href="/tags/图像处理/" rel="tag"><i class="fas fa-tags"></i>图像处理</a>
-        
         <a class="post-tag button" href="/tags/opencv/" rel="tag"><i class="fas fa-tags"></i>opencv</a>
+        
+        <a class="post-tag button" href="/tags/图像处理/" rel="tag"><i class="fas fa-tags"></i>图像处理</a>
         
       </div>
       
@@ -299,9 +356,9 @@
       
       <div class="post-tags">
         
-        <a class="post-tag button" href="/tags/图像处理/" rel="tag"><i class="fas fa-tags"></i>图像处理</a>
-        
         <a class="post-tag button" href="/tags/opencv/" rel="tag"><i class="fas fa-tags"></i>opencv</a>
+        
+        <a class="post-tag button" href="/tags/图像处理/" rel="tag"><i class="fas fa-tags"></i>图像处理</a>
         
       </div>
       
@@ -355,9 +412,9 @@
       
       <div class="post-tags">
         
-        <a class="post-tag button" href="/tags/图像处理/" rel="tag"><i class="fas fa-tags"></i>图像处理</a>
-        
         <a class="post-tag button" href="/tags/opencv/" rel="tag"><i class="fas fa-tags"></i>opencv</a>
+        
+        <a class="post-tag button" href="/tags/图像处理/" rel="tag"><i class="fas fa-tags"></i>图像处理</a>
         
       </div>
       
@@ -415,9 +472,9 @@
       
       <div class="post-tags">
         
-        <a class="post-tag button" href="/tags/图像处理/" rel="tag"><i class="fas fa-tags"></i>图像处理</a>
-        
         <a class="post-tag button" href="/tags/opencv/" rel="tag"><i class="fas fa-tags"></i>opencv</a>
+        
+        <a class="post-tag button" href="/tags/图像处理/" rel="tag"><i class="fas fa-tags"></i>图像处理</a>
         
       </div>
       
@@ -476,9 +533,9 @@
       
       <div class="post-tags">
         
-        <a class="post-tag button" href="/tags/图像处理/" rel="tag"><i class="fas fa-tags"></i>图像处理</a>
-        
         <a class="post-tag button" href="/tags/opencv/" rel="tag"><i class="fas fa-tags"></i>opencv</a>
+        
+        <a class="post-tag button" href="/tags/图像处理/" rel="tag"><i class="fas fa-tags"></i>图像处理</a>
         
       </div>
       
@@ -672,79 +729,6 @@
     </footer>
   </article>
   
-  <article class="article post card" itemscope itemtype="http://schema.org/Article">
-    <div class="post-block">
-      <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/12/动词框架语言与卫星框架语言及延伸思考/">
-      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <meta itemprop="name" content="hedgehog">
-        <meta itemprop="description" content="程序爱好者">
-        <meta itemprop="image" content="/images/avatar.png">
-      </span>
-      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-        <meta itemprop="name" content="chenying99'blog">
-      </span>
-    </div>
-    <header class="post-header">
-      <h1 class="post-title" itemprop="name headline">
-        <a class="post-title-link post-title-link-external" href="/2019/05/12/动词框架语言与卫星框架语言及延伸思考/" itemprop="url">动词框架语言与卫星框架语言及延伸思考</a>
-      </h1>
-      <div class="post-meta">
-        
-        <span class="post-date">
-          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2019-05-12T03:47:35+08:00">2019-05-12 03:47:35</time></span>
-        </span>
-        
-        
-        
-        <span class="post-meta-divider divider">|</span>
-        
-        <span class="post-categories">
-          
-          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/语言学/" itemprop="url" rel="index"><span itemprop="name">语言学</span></a></span>
-        </span>
-        
-        
-        
-        
-      </div>
-    </header>
-    <main class="post-main" itemprop="articleBody">
-      
-      <p>在语言学中，从C·J·Fillmore的格语法到框架语义学，相对乔姆斯基的生成语法，对语言的语义方面做了进一步的研究； </p>
-<p>而其缺点在于，认为语法只是表现语义的形式，相同的语义用不同的语法形式表示；即将语法视为被动的形式，而忽视其对语义的影响 </p>
-<p>现代认知语言学根据语法原型及图像背景等理论，语法实际是不同语言基于其原型的表现形式，以及不同的注意焦点等，因而表现了不同的语义 </p>
-<p>认知语言学家talmy认为，在位移事件中，包含四中基本概念要素，即图像(figure)、背景(ground)、位移（motion）、 路径(path) </p>
-<p>根据路径表示的不同，将语言分为动词框架语言与卫星框架语言； </p>
-<ol>
-<li><p>动词包含路径，称之为动词框架语言 </p>
-</li>
-<li><p>动词不包含路径（路径由小品词表示），则称之为卫星框架语言 </p>
-</li>
-</ol>
-<p>（由是观之，传统的格语法等，基于机械的语义匹配的语义格，恐怕有其不妥之处）</p>
-<p>例句： </p>
-<p>1）石头滚了下来<br>2）六鷁退飞过宋都<br>3）她把秘密藏在心里<br>4）大哥，你想开着点，……不必紧自往死牛犄角里钻<br>5）The pencil rolled off the table<br>6）The pencil lay on the table<br>7）The ball rolled down the hill<br>8）The napkin blew off the table  </p>
-<p>1）“滚”表示位移+方式，“下”表示路径；3）“roll”表示位移+方式，“off”表示路径 </p>
-<p>通常，在位移事件中，如果位移动词表示动作+方式，则需补充小品词表示路径；同样，如果位移动词表示动作+路径，则方式、原因等需要补充其他词表示 </p>
-<p>9）南宮适出，子曰：“君子哉若人！尚德哉若人！”《论语》<br>“出”表示位移+路径<br>10）鸟见之高飞，麋鹿见之决骤《庄子》<br>“骤”表示位移+方式<br>11）孔子下车而前，见谒者曰：“鲁人孔丘，闻将军高义，敬再拜谒者”《庄子·盗跖》<br>“前”表示位移+路径<br>12）诸侯之师败郑徒兵，取其禾而还《左传》<br>“还”表示位移+路径 </p>
-<p>……</p>
-<p>本人认为，关于动词框架语言与卫星框架语言的分析思路，如果不限定位移事件的分析，可以扩展到其他事件，比如致使事件的分析中（貌似位移事件与致使事件具有同源性，即基于同一原型框架） </p>
-<p>通常在致使事件中，其动词也不单纯具有表示动作的功能，而往往兼具有其他语义信息，诸如原因、工具、效果等 </p>
-<p>……</p>
-
-      
-    </main>
-    <footer class="post-footer">
-      
-      <div class="post-tags">
-        
-        <a class="post-tag button" href="/tags/隐喻/" rel="tag"><i class="fas fa-tags"></i>隐喻</a>
-        
-      </div>
-      
-    </footer>
-  </article>
-  
   
   <nav class="pagination">
     <a class="extend prev" rel="prev" href="/page/4/"><i class="fas fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/6/"><i class="fas fa-angle-right" aria-label="下一页"></i></a>
@@ -788,7 +772,7 @@
     
     <div class="archives-count">
       <div class="site-count-title">归档</div>
-      <div><a href="/archives/">59</a></div>
+      <div><a href="/archives/">60</a></div>
     </div>
     
     
@@ -867,7 +851,7 @@
     <div class="footer-container">
       <div class="footer-left">
         <div class="copyright">
-          <span class="author">hedgehog</span><span class="year"><i class="far fa-copyright"></i>2020</span>
+          <span class="author">hedgehog</span><span class="year"><i class="far fa-copyright"></i>2022</span>
         </div>
         
         <div class="busuanzi">
