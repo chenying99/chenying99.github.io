@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2022-03-08T23:00:09.097Z</updated>
+  <updated>2023-02-06T09:10:57.098Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,36 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Image Human Matting App(android)</title>
+    <link href="http://yoursite.com/2023/02/06/Image%20Human%20Matting%20App(android)/"/>
+    <id>http://yoursite.com/2023/02/06/Image Human Matting App(android)/</id>
+    <published>2023-02-06T09:05:36.000Z</published>
+    <updated>2023-02-06T09:10:57.098Z</updated>
+    
+    <content type="html"><![CDATA[<p>image human matting是一款人像抠图，自动去除背景的app(android版)，支持自定义背景，替换背景后的图像可以分享到其它app，欢迎下载体验</p><p>支持自定义背景</p><p>支持手势缩放、旋转、翻转人像</p><p>支持在线分享创意图片<br><img src="/images/Screenshot_20230131-155601.png" alt=""><br><img src="/images/Screenshot_20230131-155717.png" alt=""><br><img src="/images/Screenshot_20230131-155757.png" alt=""><br><img src="/images/Screenshot_20230131-161615.png" alt=""><br><img src="/images/Screenshot_20230131-162347.png" alt=""> </p><p>google商店下载：</p><p><a href="https://play.google.com/store/apps/details?id=com.ralab.imagematting" target="_blank" rel="noopener">Image Human Matting</a></p><p>网盘下载：</p><p><a href="https://wwud.lanzouw.com/iuRr60mrcaeb" target="_blank" rel="noopener">Image Human Matting</a><br>密码:gpwd</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;image human matting是一款人像抠图，自动去除背景的app(android版)，支持自定义背景，替换背景后的图像可以分享到其它app，欢迎下载体验&lt;/p&gt;
+&lt;p&gt;支持自定义背景&lt;/p&gt;
+&lt;p&gt;支持手势缩放、旋转、翻转人像&lt;/p&gt;
+&lt;p&gt;支持在线分享创意图片&lt;
+      
+    
+    </summary>
+    
+      <category term="python" scheme="http://yoursite.com/categories/python/"/>
+    
+      <category term="深度学习" scheme="http://yoursite.com/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+      <category term="tensorflow" scheme="http://yoursite.com/tags/tensorflow/"/>
+    
+  </entry>
   
   <entry>
     <title>无需绿幕 视频抠图 视频人像分割，虚拟视频背景app Video human matte App(android)</title>
@@ -546,34 +576,6 @@
       
       
         &lt;p&gt;前面的文章主要探索的是微服务通信及服务发现（Communication and Discovery），接下来要解决的是容错及故障恢复（Fault Tolerance and Resilience）&lt;br&gt;当某个微服务出现故障时，确保系统能够正常运行及从故障中恢复&lt;br&gt;sp
-      
-    
-    </summary>
-    
-      <category term="java" scheme="http://yoursite.com/categories/java/"/>
-    
-    
-      <category term="spring boot" scheme="http://yoursite.com/tags/spring-boot/"/>
-    
-      <category term="spring cloud" scheme="http://yoursite.com/tags/spring-cloud/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>spring cloud开发Greenwich版：服务调用RestTemplate（五）</title>
-    <link href="http://yoursite.com/2019/09/09/spring-cloud%E5%BC%80%E5%8F%91Greenwich%E7%89%88%EF%BC%88%E4%BA%94%EF%BC%89/"/>
-    <id>http://yoursite.com/2019/09/09/spring-cloud开发Greenwich版（五）/</id>
-    <published>2019-09-09T07:21:16.000Z</published>
-    <updated>2019-10-11T08:54:30.451Z</updated>
-    
-    <content type="html"><![CDATA[<p>建立注册服务器（ralab-server）并服务提供者（ralab-nlp）向其注册后，这时服务消费者（ralab-client，服务消费者也向注册服务器注册）可以通过访问注册服务器，查找服务实例名的方式查找服务提供者的相关信息，然后调用其服务 </p><p>这里基于微服务’ralab-client’  </p><ul><li>Add @LoadBalanced to the RestTemplate Instance</li><li>Edit RestTemplate url parameter host as ‘nlp-service’</li></ul><p>服务消费者ralab-client<br>RalabClientApplication文件</p><figure class="hljs highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.ralab.ralabclient;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.SpringApplication;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.autoconfigure.SpringBootApplication;</span><br><span class="line"><span class="keyword">import</span> org.springframework.cloud.client.loadbalancer.LoadBalanced;</span><br><span class="line"><span class="keyword">import</span> org.springframework.cloud.netflix.eureka.EnableEurekaClient;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Bean;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.client.RestTemplate;</span><br><span class="line"></span><br><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="meta">@EnableEurekaClient</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RalabClientApplication</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="meta">@LoadBalanced</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> RestTemplate <span class="title">getRestTemplate</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> RestTemplate();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        SpringApplication.run(RalabClientApplication.class, args);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>修改NlpResource文件<br><figure class="hljs highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.ralab.ralabclient.resources;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.GetMapping;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestMapping;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RestController;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.client.RestTemplate;</span><br><span class="line"></span><br><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/nlp"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">NlpResource</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> RestTemplate restTemplate;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@GetMapping</span>(<span class="string">"/service"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">index</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">      <span class="comment">//String result = restTemplate.getForObject("http://localhost:8090/nlp/api", String.class);</span></span><br><span class="line">      String result = restTemplate.getForObject(<span class="string">"http://nlp-service/nlp/api"</span>, String.class);</span><br><span class="line">      <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><p>运行RalabClientApplication</p><p>测试<a href="http://localhost:8091/nlp/service" target="_blank" rel="noopener">http://localhost:8091/nlp/service</a><br><img src="/images/springcloud5.png" alt=""></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;建立注册服务器（ralab-server）并服务提供者（ralab-nlp）向其注册后，这时服务消费者（ralab-client，服务消费者也向注册服务器注册）可以通过访问注册服务器，查找服务实例名的方式查找服务提供者的相关信息，然后调用其服务 &lt;/p&gt;
-&lt;p&gt;这里基于微服
       
     
     </summary>

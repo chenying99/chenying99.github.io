@@ -129,6 +129,61 @@
   
   <article class="article post card" itemscope itemtype="http://schema.org/Article">
     <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/11/python开发：scrapy爬虫（八）/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="hedgehog">
+        <meta itemprop="description" content="程序爱好者">
+        <meta itemprop="image" content="/images/avatar.png">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="chenying99'blog">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2019/08/11/python开发：scrapy爬虫（八）/" itemprop="url">python开发：scrapy爬虫（八）</a>
+      </h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2019-08-11T16:17:05+08:00">2019-08-11 16:17:05</time></span>
+        </span>
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-categories">
+          
+          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a></span>
+        </span>
+        
+        
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      
+      <p>本文实现用户登录功能  </p>
+<figure class="hljs highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> scrapy</span><br><span class="line"><span class="keyword">from</span> scrapy.http <span class="keyword">import</span> FormRequest</span><br><span class="line"><span class="keyword">from</span> scrapy.utils.response <span class="keyword">import</span> open_in_browser</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BlogSpider</span><span class="params">(scrapy.Spider)</span>:</span></span><br><span class="line">    name = <span class="string">'quotes'</span></span><br><span class="line">    start_urls = &#123;</span><br><span class="line">        <span class="string">'http://quotes.toscrape.com/login'</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">parse</span><span class="params">(self, response)</span>:</span></span><br><span class="line">        token = response.css(<span class="string">'form input::attr(value)'</span>).extract_first()</span><br><span class="line">        <span class="keyword">return</span> FormRequest.from_response(response, formdata=&#123;</span><br><span class="line">            <span class="string">'csrf_token'</span>: token,</span><br><span class="line">            <span class="string">'username'</span>: <span class="string">'dsadsa'</span>,</span><br><span class="line">            <span class="string">'password'</span>: <span class="string">'dsads'</span></span><br><span class="line">        &#125;, callback=self.start_scraping)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">start_scraping</span><span class="params">(self, response)</span>:</span></span><br><span class="line">        <span class="comment"># open_in_browser(response)</span></span><br><span class="line">        all_div_quotes = response.css(<span class="string">'div.quote'</span>)</span><br><span class="line">        <span class="keyword">for</span> quote <span class="keyword">in</span> all_div_quotes:</span><br><span class="line">            title = quote.css(<span class="string">'span.text::text'</span>).extract()</span><br><span class="line">            author = quote.css(<span class="string">'.author::text'</span>).extract()</span><br><span class="line">            tag = quote.css(<span class="string">'.tag::text'</span>).extract()</span><br><span class="line">            <span class="keyword">yield</span> &#123;<span class="string">'标题'</span>: title, <span class="string">'作者'</span>: author, <span class="string">'标签'</span>: tag&#125;</span><br></pre></td></tr></table></figure>
+<p>补充：<br>调试scrapy爬虫<br>scrapytutorial/scrapytutorial目录，新建run.py文件<br><figure class="hljs highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> scrapy <span class="keyword">import</span> cmdline</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">name = <span class="string">'quotes'</span></span><br><span class="line">cmd = <span class="string">'scrapy crawl &#123;0&#125;'</span>.format(name)</span><br><span class="line">cmdline.execute(cmd.split())</span><br></pre></td></tr></table></figure></p>
+
+      
+    </main>
+    <footer class="post-footer">
+      
+      <div class="post-tags">
+        
+        <a class="post-tag button" href="/tags/scrapy/" rel="tag"><i class="fas fa-tags"></i>scrapy</a>
+        
+      </div>
+      
+    </footer>
+  </article>
+  
+  <article class="article post card" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
       <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/11/python开发：scrapy爬虫（七）/">
       <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
         <meta itemprop="name" content="hedgehog">
@@ -646,69 +701,9 @@
     </footer>
   </article>
   
-  <article class="article post card" itemscope itemtype="http://schema.org/Article">
-    <div class="post-block">
-      <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/01/opencv4-0-0图像处理：颜色空间（八）/">
-      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <meta itemprop="name" content="hedgehog">
-        <meta itemprop="description" content="程序爱好者">
-        <meta itemprop="image" content="/images/avatar.png">
-      </span>
-      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-        <meta itemprop="name" content="chenying99'blog">
-      </span>
-    </div>
-    <header class="post-header">
-      <h1 class="post-title" itemprop="name headline">
-        <a class="post-title-link post-title-link-external" href="/2019/06/01/opencv4-0-0图像处理：颜色空间（八）/" itemprop="url">opencv4.0.0图像处理：颜色空间（八）</a>
-      </h1>
-      <div class="post-meta">
-        
-        <span class="post-date">
-          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2019-06-01T17:01:36+08:00">2019-06-01 17:01:36</time></span>
-        </span>
-        
-        
-        
-        <span class="post-meta-divider divider">|</span>
-        
-        <span class="post-categories">
-          
-          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/opencv/" itemprop="url" rel="index"><span itemprop="name">opencv</span></a></span>
-        </span>
-        
-        
-        
-        
-      </div>
-    </header>
-    <main class="post-main" itemprop="articleBody">
-      
-      <p>我们可以将图像的BGR颜色空间转换到HSV颜色空间，然后基于HSV颜色空间对图片颜色处理 </p>
-<p>HSV表示Hue, Saturation, Value，其中Hue范围0~180，Saturation范围0~255，Value范围0~255 </p>
-<p>那么我们怎么根据HSV颜色空间提取图像中的颜色呢？这里有一个指导（在具体实践中，我们可以根据HSV的直方图作参考） </p>
-<p><img src="/images/2761157-3fa7a2bfdecfabe4.png" alt=""></p>
-<p>这里的例子是提取图像中的苹果<br><figure class="hljs highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">		Mat img = Imgcodecs.imread(<span class="string">"data/apple.jpg"</span>);</span><br><span class="line">		Mat imgHSV = <span class="keyword">new</span> Mat(img.rows(), img.cols(), CvType.CV_8UC3);		</span><br><span class="line">		</span><br><span class="line">		<span class="comment">// RGB-&gt;HSV</span></span><br><span class="line">		Imgproc.cvtColor(img, imgHSV, Imgproc.COLOR_BGR2HSV);</span><br><span class="line">		</span><br><span class="line">		</span><br><span class="line">		Scalar lower_hsv = <span class="keyword">new</span> Scalar(<span class="number">0</span>,<span class="number">90</span>,<span class="number">70</span>);</span><br><span class="line">		Scalar upper_hsv = <span class="keyword">new</span> Scalar(<span class="number">15</span>,<span class="number">230</span>,<span class="number">255</span>);		</span><br><span class="line">				</span><br><span class="line">		Mat mask = <span class="keyword">new</span> Mat();</span><br><span class="line">		Core.inRange(imgHSV, lower_hsv, upper_hsv, mask);</span><br><span class="line">		Mat blackImg = <span class="keyword">new</span> Mat();</span><br><span class="line">		Core.bitwise_and(img, img, blackImg,mask);</span><br><span class="line"></span><br><span class="line">		HighGui.imshow(<span class="string">"原图"</span>, img);</span><br><span class="line">		HighGui.imshow(<span class="string">"mask"</span>, mask);</span><br><span class="line">		HighGui.imshow(<span class="string">"颜色过滤"</span>, blackImg);</span><br><span class="line">		HighGui.waitKey(<span class="number">0</span>);</span><br><span class="line">		System.exit(<span class="number">0</span>);</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure></p>
-<p><img src="/images/apple.jpg" alt=""><br><img src="/images/QQ截图20190601171816.png" alt=""><br><img src="/images/QQ截图20190601171903.png" alt=""></p>
-
-      
-    </main>
-    <footer class="post-footer">
-      
-      <div class="post-tags">
-        
-        <a class="post-tag button" href="/tags/图像处理/" rel="tag"><i class="fas fa-tags"></i>图像处理</a>
-        
-        <a class="post-tag button" href="/tags/opencv/" rel="tag"><i class="fas fa-tags"></i>opencv</a>
-        
-      </div>
-      
-    </footer>
-  </article>
-  
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/3/"><i class="fas fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/5/"><i class="fas fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/3/"><i class="fas fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/5/"><i class="fas fa-angle-right" aria-label="下一页"></i></a>
   </nav>
   
   
@@ -749,7 +744,7 @@
     
     <div class="archives-count">
       <div class="site-count-title">归档</div>
-      <div><a href="/archives/">60</a></div>
+      <div><a href="/archives/">61</a></div>
     </div>
     
     
@@ -828,7 +823,7 @@
     <div class="footer-container">
       <div class="footer-left">
         <div class="copyright">
-          <span class="author">hedgehog</span><span class="year"><i class="far fa-copyright"></i>2022</span>
+          <span class="author">hedgehog</span><span class="year"><i class="far fa-copyright"></i>2023</span>
         </div>
         
         <div class="busuanzi">

@@ -129,6 +129,66 @@
   
   <article class="article post card" itemscope itemtype="http://schema.org/Article">
     <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/01/opencv4-0-0图像处理：颜色空间（八）/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="hedgehog">
+        <meta itemprop="description" content="程序爱好者">
+        <meta itemprop="image" content="/images/avatar.png">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="chenying99'blog">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2019/06/01/opencv4-0-0图像处理：颜色空间（八）/" itemprop="url">opencv4.0.0图像处理：颜色空间（八）</a>
+      </h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2019-06-01T17:01:36+08:00">2019-06-01 17:01:36</time></span>
+        </span>
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-categories">
+          
+          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/opencv/" itemprop="url" rel="index"><span itemprop="name">opencv</span></a></span>
+        </span>
+        
+        
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      
+      <p>我们可以将图像的BGR颜色空间转换到HSV颜色空间，然后基于HSV颜色空间对图片颜色处理 </p>
+<p>HSV表示Hue, Saturation, Value，其中Hue范围0~180，Saturation范围0~255，Value范围0~255 </p>
+<p>那么我们怎么根据HSV颜色空间提取图像中的颜色呢？这里有一个指导（在具体实践中，我们可以根据HSV的直方图作参考） </p>
+<p><img src="/images/2761157-3fa7a2bfdecfabe4.png" alt=""></p>
+<p>这里的例子是提取图像中的苹果<br><figure class="hljs highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">		Mat img = Imgcodecs.imread(<span class="string">"data/apple.jpg"</span>);</span><br><span class="line">		Mat imgHSV = <span class="keyword">new</span> Mat(img.rows(), img.cols(), CvType.CV_8UC3);		</span><br><span class="line">		</span><br><span class="line">		<span class="comment">// RGB-&gt;HSV</span></span><br><span class="line">		Imgproc.cvtColor(img, imgHSV, Imgproc.COLOR_BGR2HSV);</span><br><span class="line">		</span><br><span class="line">		</span><br><span class="line">		Scalar lower_hsv = <span class="keyword">new</span> Scalar(<span class="number">0</span>,<span class="number">90</span>,<span class="number">70</span>);</span><br><span class="line">		Scalar upper_hsv = <span class="keyword">new</span> Scalar(<span class="number">15</span>,<span class="number">230</span>,<span class="number">255</span>);		</span><br><span class="line">				</span><br><span class="line">		Mat mask = <span class="keyword">new</span> Mat();</span><br><span class="line">		Core.inRange(imgHSV, lower_hsv, upper_hsv, mask);</span><br><span class="line">		Mat blackImg = <span class="keyword">new</span> Mat();</span><br><span class="line">		Core.bitwise_and(img, img, blackImg,mask);</span><br><span class="line"></span><br><span class="line">		HighGui.imshow(<span class="string">"原图"</span>, img);</span><br><span class="line">		HighGui.imshow(<span class="string">"mask"</span>, mask);</span><br><span class="line">		HighGui.imshow(<span class="string">"颜色过滤"</span>, blackImg);</span><br><span class="line">		HighGui.waitKey(<span class="number">0</span>);</span><br><span class="line">		System.exit(<span class="number">0</span>);</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure></p>
+<p><img src="/images/apple.jpg" alt=""><br><img src="/images/QQ截图20190601171816.png" alt=""><br><img src="/images/QQ截图20190601171903.png" alt=""></p>
+
+      
+    </main>
+    <footer class="post-footer">
+      
+      <div class="post-tags">
+        
+        <a class="post-tag button" href="/tags/图像处理/" rel="tag"><i class="fas fa-tags"></i>图像处理</a>
+        
+        <a class="post-tag button" href="/tags/opencv/" rel="tag"><i class="fas fa-tags"></i>opencv</a>
+        
+      </div>
+      
+    </footer>
+  </article>
+  
+  <article class="article post card" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
       <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/01/opencv4-0-0图像处理：图像直方图（七）/">
       <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
         <meta itemprop="name" content="hedgehog">
@@ -657,81 +717,9 @@
     </footer>
   </article>
   
-  <article class="article post card" itemscope itemtype="http://schema.org/Article">
-    <div class="post-block">
-      <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/12/古汉语中的词类活用及其语义功能/">
-      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <meta itemprop="name" content="hedgehog">
-        <meta itemprop="description" content="程序爱好者">
-        <meta itemprop="image" content="/images/avatar.png">
-      </span>
-      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-        <meta itemprop="name" content="chenying99'blog">
-      </span>
-    </div>
-    <header class="post-header">
-      <h1 class="post-title" itemprop="name headline">
-        <a class="post-title-link post-title-link-external" href="/2019/05/12/古汉语中的词类活用及其语义功能/" itemprop="url">古汉语中的词类活用及其语义功能</a>
-      </h1>
-      <div class="post-meta">
-        
-        <span class="post-date">
-          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2019-05-12T04:35:40+08:00">2019-05-12 04:35:40</time></span>
-        </span>
-        
-        
-        
-        <span class="post-meta-divider divider">|</span>
-        
-        <span class="post-categories">
-          
-          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/语言学/" itemprop="url" rel="index"><span itemprop="name">语言学</span></a></span>
-        </span>
-        
-        
-        
-        
-      </div>
-    </header>
-    <main class="post-main" itemprop="articleBody">
-      
-      <p>在古汉语中，词类活用是一种较为普遍的语法现象，如形容词作动词、名词作动词、名词作状语等</p>
-<p>以往的语言教学对这些词类活用现象，诸如解释为意动用法、使动用法等，解释比较笼统</p>
-<p><strong>形容词作动词，使动用法</strong></p>
-<p>例句：</p>
-<p>1）春风又绿江南岸<br>2）白了少年头<br>3）红了樱桃，绿了芭蕉<br>4) 富润室，德润身，心广体胖，故君子必诚其意</p>
-<p>传统语法将上面的句子中的形容词作动词，通常解释为使动用法；这个解释当然没有问题，不过本人觉得还是解释得比较笼统</p>
-<p>如果参考动词框架语言及卫星框架语言中的分析，上述语法现象可以考虑进一步解释</p>
-<p>词类活用现象，它相当于补充了动作之外的其他信息，诸如原因、效果、方式、处所等</p>
-<p>形容词作动词，即使动用法，它通常表示动作+效果</p>
-<p>上面的句子貌似为致使事件，与位移事件具有同源性，即都表示状态的变化；</p>
-<p><strong>形容词作动词，意动用法</strong></p>
-<p>例句：</p>
-<p>5）然则吾大天地而小豪末，可乎？《庄子》<br>6）吾妻之美我者，私我也；妾之美我者，畏我也；客之美我者，欲有求于我也。《战国策·齐策》<br>7）是故明君贵五谷而贱金玉《论贵粟疏》<br>8）甘其食，美其服，安其居，乐其俗《老子》</p>
-<p>上面句子传统解释为意动用法，亦可解释为动作+效果</p>
-<p><strong>名词用作动词，通常表示方式、工具、处所等</strong></p>
-<p>9）左右欲刃相如《史记》<br>10）卒中往往语，皆指目陈胜《史记》<br>11）假舟楫者，非能水也《荀子》<br>12）策之不以其道《马说》</p>
-<p><strong>名词作状语，则似乎更明显</strong></p>
-<p>13）天下云集响应,赢粮而景从《过秦论》<br>14）嫂蛇形匍匐《战国策·秦策》<br>15）君为我呼入,吾得兄事之《史记·项羽本纪》<br>16）叩石垦壤,箕畚运于渤海之尾《列子·汤问》<br>17）妾在巫山之阳,高丘之岨,旦为行云,暮为行雨,朝朝暮暮,阳台之下《高唐赋》</p>
-<p>名词作状语，通常表示方式、工具、时间、处所等</p>
-<p>……</p>
-
-      
-    </main>
-    <footer class="post-footer">
-      
-      <div class="post-tags">
-        
-        <a class="post-tag button" href="/tags/隐喻/" rel="tag"><i class="fas fa-tags"></i>隐喻</a>
-        
-      </div>
-      
-    </footer>
-  </article>
-  
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/4/"><i class="fas fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/6/"><i class="fas fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/4/"><i class="fas fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/6/"><i class="fas fa-angle-right" aria-label="下一页"></i></a>
   </nav>
   
   
@@ -772,7 +760,7 @@
     
     <div class="archives-count">
       <div class="site-count-title">归档</div>
-      <div><a href="/archives/">60</a></div>
+      <div><a href="/archives/">61</a></div>
     </div>
     
     
@@ -851,7 +839,7 @@
     <div class="footer-container">
       <div class="footer-left">
         <div class="copyright">
-          <span class="author">hedgehog</span><span class="year"><i class="far fa-copyright"></i>2022</span>
+          <span class="author">hedgehog</span><span class="year"><i class="far fa-copyright"></i>2023</span>
         </div>
         
         <div class="busuanzi">
