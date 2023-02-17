@@ -129,6 +129,73 @@
   
   <article class="article post card" itemscope itemtype="http://schema.org/Article">
     <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/02/nodejs开发：webpack4-39-0配置/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="hedgehog">
+        <meta itemprop="description" content="程序爱好者">
+        <meta itemprop="image" content="/images/avatar.png">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="chenying99'blog">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2019/08/02/nodejs开发：webpack4-39-0配置/" itemprop="url">nodejs开发：webpack4.39.0配置</a>
+      </h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2019-08-02T19:25:19+08:00">2019-08-02 19:25:19</time></span>
+        </span>
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-categories">
+          
+          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/nodejs/" itemprop="url" rel="index"><span itemprop="name">nodejs</span></a></span>
+        </span>
+        
+        
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      
+      <p>webpack是nodejs开发中，经常需要用到工具；貌似不同的版本的配置稍有差异，经常碰到各种错误<br>这里本人基于目前最新版本进行了配置测试 </p>
+<p>安装相关package </p>
+<p>创建目录<br>mkdir webpacktest &amp;&amp; cd webpacktest</p>
+<p>npm init -y<br>npm i -D webpack webpack-cli</p>
+<p>npm i -D html-webpack-plugin html-loader</p>
+<p>npm i -D webpack-dev-server</p>
+<p>npm i -D @babel/core babel-loader @babel/preset-env</p>
+<p>npm i -D file-loader</p>
+<p>npm i -D node-sass style-loader css-loader sass-loader mini-css-extract-plugin</p>
+<p>package.json文件<br><figure class="hljs highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"name"</span>: <span class="string">"webpacktest"</span>,</span><br><span class="line">  <span class="attr">"version"</span>: <span class="string">"1.0.0"</span>,</span><br><span class="line">  <span class="attr">"description"</span>: <span class="string">""</span>,</span><br><span class="line">  <span class="attr">"main"</span>: <span class="string">"index.js"</span>,</span><br><span class="line">  <span class="attr">"scripts"</span>: &#123;</span><br><span class="line">    <span class="attr">"build"</span>: <span class="string">"webpack"</span>,</span><br><span class="line">    <span class="attr">"start:dev"</span>: <span class="string">"webpack-dev-server"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">"keywords"</span>: [],</span><br><span class="line">  <span class="attr">"author"</span>: <span class="string">""</span>,</span><br><span class="line">  <span class="attr">"license"</span>: <span class="string">"ISC"</span>,</span><br><span class="line">  <span class="attr">"devDependencies"</span>: &#123;</span><br><span class="line">    <span class="attr">"@babel/core"</span>: <span class="string">"^7.5.5"</span>,</span><br><span class="line">    <span class="attr">"@babel/preset-env"</span>: <span class="string">"^7.5.5"</span>,</span><br><span class="line">    <span class="attr">"babel-loader"</span>: <span class="string">"^8.0.6"</span>,</span><br><span class="line">    <span class="attr">"css-loader"</span>: <span class="string">"^3.1.0"</span>,</span><br><span class="line">    <span class="attr">"file-loader"</span>: <span class="string">"^4.1.0"</span>,</span><br><span class="line">    <span class="attr">"html-loader"</span>: <span class="string">"^0.5.5"</span>,</span><br><span class="line">    <span class="attr">"html-webpack-plugin"</span>: <span class="string">"^3.2.0"</span>,</span><br><span class="line">    <span class="attr">"mini-css-extract-plugin"</span>: <span class="string">"^0.8.0"</span>,</span><br><span class="line">    <span class="attr">"node-sass"</span>: <span class="string">"^4.12.0"</span>,</span><br><span class="line">    <span class="attr">"sass-loader"</span>: <span class="string">"^7.1.0"</span>,</span><br><span class="line">    <span class="attr">"style-loader"</span>: <span class="string">"^0.23.1"</span>,</span><br><span class="line">    <span class="attr">"webpack"</span>: <span class="string">"^4.39.0"</span>,</span><br><span class="line">    <span class="attr">"webpack-cli"</span>: <span class="string">"^3.3.6"</span>,</span><br><span class="line">    <span class="attr">"webpack-dev-server"</span>: <span class="string">"^3.7.2"</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>webpack.config.js文件<br><figure class="hljs highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> HtmlWebPackPlugin = <span class="built_in">require</span>(<span class="string">"html-webpack-plugin"</span>);</span><br><span class="line"><span class="keyword">const</span> MiniCssExtractPlugin = <span class="built_in">require</span>(<span class="string">"mini-css-extract-plugin"</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">    <span class="built_in">module</span>: &#123;</span><br><span class="line">        rules: [</span><br><span class="line">            &#123;</span><br><span class="line">                test: <span class="regexp">/\.js$/</span>,</span><br><span class="line">                exclude: <span class="regexp">/node_modules/</span>,</span><br><span class="line">                use:&#123;</span><br><span class="line">                    loader: <span class="string">'babel-loader'</span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;,</span><br><span class="line">            &#123;</span><br><span class="line">                test: <span class="regexp">/\.html$/</span>,</span><br><span class="line">                use: [&#123;</span><br><span class="line">                    loader: <span class="string">'html-loader'</span>,</span><br><span class="line">                    options: &#123;</span><br><span class="line">                        minimize: <span class="literal">true</span></span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;],</span><br><span class="line">            &#125;,</span><br><span class="line">            &#123;</span><br><span class="line">                test: <span class="regexp">/\.(png|svg|jpg|gif)$/</span>,</span><br><span class="line">                use: [</span><br><span class="line">                    &#123;</span><br><span class="line">                        loader: <span class="string">'file-loader'</span></span><br><span class="line">                    &#125;</span><br><span class="line">                ]</span><br><span class="line">            &#125;,</span><br><span class="line">            &#123;</span><br><span class="line">                test:<span class="regexp">/\.scss$/</span>,</span><br><span class="line">                use:[</span><br><span class="line">                    <span class="string">"style-loader"</span>,</span><br><span class="line">                    <span class="string">"css-loader"</span>,</span><br><span class="line">                    <span class="string">"sass-loader"</span></span><br><span class="line">                ]</span><br><span class="line">            &#125;</span><br><span class="line">        ]</span><br><span class="line">    &#125;,</span><br><span class="line">    plugins: [<span class="keyword">new</span> HtmlWebPackPlugin(&#123;</span><br><span class="line">        template: <span class="string">'./src/index.html'</span>,</span><br><span class="line">        filename: <span class="string">'./index.html'</span></span><br><span class="line">    &#125;),</span><br><span class="line">       <span class="keyword">new</span> MiniCssExtractPlugin(&#123;</span><br><span class="line">        filename:<span class="string">"[name].css"</span>,</span><br><span class="line">        chunkFilename:<span class="string">"[id].css"</span></span><br><span class="line">       &#125;)</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>输入命令 npm run build进行打包<br>    npm run start:dev进行开发 </p>
+<p>安装静态服务器<br>npm i http-server -g<br>http-server -o（运行服务器）</p>
+
+      
+    </main>
+    <footer class="post-footer">
+      
+      <div class="post-tags">
+        
+        <a class="post-tag button" href="/tags/javascript/" rel="tag"><i class="fas fa-tags"></i>javascript</a>
+        
+        <a class="post-tag button" href="/tags/webpack/" rel="tag"><i class="fas fa-tags"></i>webpack</a>
+        
+      </div>
+      
+    </footer>
+  </article>
+  
+  <article class="article post card" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
       <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/01/opencv4-0-0图像处理：颜色空间（八）/">
       <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
         <meta itemprop="name" content="hedgehog">
@@ -659,64 +726,6 @@
     </footer>
   </article>
   
-  <article class="article post card" itemscope itemtype="http://schema.org/Article">
-    <div class="post-block">
-      <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/12/信号调制及复指数载波、正弦载波及脉冲载波/">
-      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <meta itemprop="name" content="hedgehog">
-        <meta itemprop="description" content="程序爱好者">
-        <meta itemprop="image" content="/images/avatar.png">
-      </span>
-      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-        <meta itemprop="name" content="chenying99'blog">
-      </span>
-    </div>
-    <header class="post-header">
-      <h1 class="post-title" itemprop="name headline">
-        <a class="post-title-link post-title-link-external" href="/2019/05/12/信号调制及复指数载波、正弦载波及脉冲载波/" itemprop="url">信号调制及复指数载波、正弦载波及脉冲载波</a>
-      </h1>
-      <div class="post-meta">
-        
-        <span class="post-date">
-          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2019-05-12T04:40:27+08:00">2019-05-12 04:40:27</time></span>
-        </span>
-        
-        
-        
-        <span class="post-meta-divider divider">|</span>
-        
-        <span class="post-categories">
-          
-          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/信号与系统/" itemprop="url" rel="index"><span itemprop="name">信号与系统</span></a></span>
-        </span>
-        
-        
-        
-        
-      </div>
-    </header>
-    <main class="post-main" itemprop="articleBody">
-      
-      <p>信号滤波及调制等，通常基于傅里叶变换属性；滤波器的理论依据在于时域信号的卷积等于相对应的频域的乘积；调制的理论依据在于时域信号的乘积等于相对应的频域的卷积；（貌似有点抽象） </p>
-<p>本文讨论信号的调制，</p>
-
-      
-    </main>
-    <footer class="post-footer">
-      
-      <div class="post-tags">
-        
-        <a class="post-tag button" href="/tags/数字信号处理/" rel="tag"><i class="fas fa-tags"></i>数字信号处理</a>
-        
-        <a class="post-tag button" href="/tags/傅里叶变换/" rel="tag"><i class="fas fa-tags"></i>傅里叶变换</a>
-        
-        <a class="post-tag button" href="/tags/卷积/" rel="tag"><i class="fas fa-tags"></i>卷积</a>
-        
-      </div>
-      
-    </footer>
-  </article>
-  
   
   <nav class="pagination">
     <a class="extend prev" rel="prev" href="/page/4/"><i class="fas fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/6/"><i class="fas fa-angle-right" aria-label="下一页"></i></a>
@@ -760,7 +769,7 @@
     
     <div class="archives-count">
       <div class="site-count-title">归档</div>
-      <div><a href="/archives/">61</a></div>
+      <div><a href="/archives/">62</a></div>
     </div>
     
     
