@@ -129,6 +129,63 @@
   
   <article class="article post card" itemscope itemtype="http://schema.org/Article">
     <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/10/python开发：Anaconda最新版命令-4-7-11/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="hedgehog">
+        <meta itemprop="description" content="程序爱好者">
+        <meta itemprop="image" content="/images/avatar.png">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="chenying99'blog">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2019/08/10/python开发：Anaconda最新版命令-4-7-11/" itemprop="url">python开发：Anaconda最新版命令(4.7.11)</a>
+      </h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2019-08-10T19:17:19+08:00">2019-08-10 19:17:19</time></span>
+        </span>
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-categories">
+          
+          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a></span>
+        </span>
+        
+        
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      
+      <p>最新版的Anaconda命令与旧版稍有差异，这里记录以备查<br><figure class="hljs highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">查看Anaconda版本 </span><br><span class="line">conda --version </span><br><span class="line"></span><br><span class="line">conda create --name snowflakes biopython </span><br><span class="line">conda activate snowflakes（激活环境） </span><br><span class="line">conda info --envs </span><br><span class="line">conda activate（退回默认环境）  </span><br><span class="line"></span><br><span class="line">conda create --name snakes python=3.5 </span><br><span class="line">conda activate snakes（激活环境） </span><br><span class="line">conda info --envs </span><br><span class="line">python --version </span><br><span class="line">conda activate（退回默认环境） </span><br><span class="line"></span><br><span class="line">conda search beautifulsoup4 </span><br><span class="line">conda install beautifulsoup4 </span><br><span class="line">conda list </span><br><span class="line"></span><br><span class="line">查看帮助 </span><br><span class="line">conda --help </span><br><span class="line">conda update -h</span><br></pre></td></tr></table></figure></p>
+<p>.condarc设置源<br><figure class="hljs highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">channels:</span><br><span class="line">  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/</span><br><span class="line">  - defaults</span><br><span class="line">show_channel_urls: true</span><br><span class="line">ssl_verify: true</span><br></pre></td></tr></table></figure></p>
+<p>pip/pip.ini<br><figure class="hljs highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[global]</span><br><span class="line">trusted-host =  pypi.tuna.tsinghua.edu.cn</span><br><span class="line">index-url = https://pypi.tuna.tsinghua.edu.cn/simple</span><br></pre></td></tr></table></figure></p>
+<hr>
+<p>旧版本命令<br><figure class="hljs highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">conda --version</span><br><span class="line">python --version</span><br><span class="line"></span><br><span class="line">conda upgrade --all</span><br><span class="line"></span><br><span class="line">移除环境</span><br><span class="line">conda remove -n py35 --all(conda env remove  -n python36 # 测试可行)</span><br><span class="line">移除包</span><br><span class="line">conda remove -n py35 iopro</span><br><span class="line">conda create --name py35 python=3.5 </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">activate py35</span><br><span class="line">deactivate(deactivate python36 )</span><br><span class="line"></span><br><span class="line">conda install pyqt=5</span><br><span class="line">conda remove pyqt</span><br><span class="line">conda update package_name（升级）</span><br><span class="line">python -m pip install --upgrade pip（貌似是升级pip）</span><br><span class="line"></span><br><span class="line">conda list</span><br><span class="line"></span><br><span class="line">conda info -e(conda env list)</span><br><span class="line"></span><br><span class="line">pip install labelImg（安装）</span><br><span class="line">pip uninstall requests</span><br><span class="line"></span><br><span class="line">pip install --upgrade labelImg（升级）</span><br><span class="line"></span><br><span class="line">conda env export --file python36_20190106.yml</span><br><span class="line">conda env create -f  d:\python36_20190106.yml</span><br></pre></td></tr></table></figure></p>
+
+      
+    </main>
+    <footer class="post-footer">
+      
+      <div class="post-tags">
+        
+        <a class="post-tag button" href="/tags/Anaconda/" rel="tag"><i class="fas fa-tags"></i>Anaconda</a>
+        
+      </div>
+      
+    </footer>
+  </article>
+  
+  <article class="article post card" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
       <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/02/nodejs开发：webpack4-39-0配置/">
       <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
         <meta itemprop="name" content="hedgehog">
@@ -245,9 +302,9 @@
       
       <div class="post-tags">
         
-        <a class="post-tag button" href="/tags/opencv/" rel="tag"><i class="fas fa-tags"></i>opencv</a>
-        
         <a class="post-tag button" href="/tags/图像处理/" rel="tag"><i class="fas fa-tags"></i>图像处理</a>
+        
+        <a class="post-tag button" href="/tags/opencv/" rel="tag"><i class="fas fa-tags"></i>opencv</a>
         
       </div>
       
@@ -302,9 +359,9 @@
       
       <div class="post-tags">
         
-        <a class="post-tag button" href="/tags/opencv/" rel="tag"><i class="fas fa-tags"></i>opencv</a>
-        
         <a class="post-tag button" href="/tags/图像处理/" rel="tag"><i class="fas fa-tags"></i>图像处理</a>
+        
+        <a class="post-tag button" href="/tags/opencv/" rel="tag"><i class="fas fa-tags"></i>opencv</a>
         
       </div>
       
@@ -358,9 +415,9 @@
       
       <div class="post-tags">
         
-        <a class="post-tag button" href="/tags/opencv/" rel="tag"><i class="fas fa-tags"></i>opencv</a>
-        
         <a class="post-tag button" href="/tags/图像处理/" rel="tag"><i class="fas fa-tags"></i>图像处理</a>
+        
+        <a class="post-tag button" href="/tags/opencv/" rel="tag"><i class="fas fa-tags"></i>opencv</a>
         
       </div>
       
@@ -420,9 +477,9 @@
       
       <div class="post-tags">
         
-        <a class="post-tag button" href="/tags/opencv/" rel="tag"><i class="fas fa-tags"></i>opencv</a>
-        
         <a class="post-tag button" href="/tags/图像处理/" rel="tag"><i class="fas fa-tags"></i>图像处理</a>
+        
+        <a class="post-tag button" href="/tags/opencv/" rel="tag"><i class="fas fa-tags"></i>opencv</a>
         
       </div>
       
@@ -483,9 +540,9 @@
       
       <div class="post-tags">
         
-        <a class="post-tag button" href="/tags/opencv/" rel="tag"><i class="fas fa-tags"></i>opencv</a>
-        
         <a class="post-tag button" href="/tags/图像处理/" rel="tag"><i class="fas fa-tags"></i>图像处理</a>
+        
+        <a class="post-tag button" href="/tags/opencv/" rel="tag"><i class="fas fa-tags"></i>opencv</a>
         
       </div>
       
@@ -539,9 +596,9 @@
       
       <div class="post-tags">
         
-        <a class="post-tag button" href="/tags/opencv/" rel="tag"><i class="fas fa-tags"></i>opencv</a>
-        
         <a class="post-tag button" href="/tags/图像处理/" rel="tag"><i class="fas fa-tags"></i>图像处理</a>
+        
+        <a class="post-tag button" href="/tags/opencv/" rel="tag"><i class="fas fa-tags"></i>opencv</a>
         
       </div>
       
@@ -599,9 +656,9 @@
       
       <div class="post-tags">
         
-        <a class="post-tag button" href="/tags/opencv/" rel="tag"><i class="fas fa-tags"></i>opencv</a>
-        
         <a class="post-tag button" href="/tags/图像处理/" rel="tag"><i class="fas fa-tags"></i>图像处理</a>
+        
+        <a class="post-tag button" href="/tags/opencv/" rel="tag"><i class="fas fa-tags"></i>opencv</a>
         
       </div>
       
@@ -660,66 +717,9 @@
       
       <div class="post-tags">
         
-        <a class="post-tag button" href="/tags/opencv/" rel="tag"><i class="fas fa-tags"></i>opencv</a>
-        
         <a class="post-tag button" href="/tags/图像处理/" rel="tag"><i class="fas fa-tags"></i>图像处理</a>
         
-      </div>
-      
-    </footer>
-  </article>
-  
-  <article class="article post card" itemscope itemtype="http://schema.org/Article">
-    <div class="post-block">
-      <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/14/抽取网易公开课中英文字幕及合并、同步等/">
-      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <meta itemprop="name" content="hedgehog">
-        <meta itemprop="description" content="程序爱好者">
-        <meta itemprop="image" content="/images/avatar.png">
-      </span>
-      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-        <meta itemprop="name" content="chenying99'blog">
-      </span>
-    </div>
-    <header class="post-header">
-      <h1 class="post-title" itemprop="name headline">
-        <a class="post-title-link post-title-link-external" href="/2019/05/14/抽取网易公开课中英文字幕及合并、同步等/" itemprop="url">抽取网易公开课中英文字幕及合并、同步等</a>
-      </h1>
-      <div class="post-meta">
-        
-        <span class="post-date">
-          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2019-05-14T08:05:59+08:00">2019-05-14 08:05:59</time></span>
-        </span>
-        
-        
-        
-        <span class="post-meta-divider divider">|</span>
-        
-        <span class="post-categories">
-          
-          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/java/" itemprop="url" rel="index"><span itemprop="name">java</span></a></span>
-        </span>
-        
-        
-        
-        
-      </div>
-    </header>
-    <main class="post-main" itemprop="articleBody">
-      
-      <p>最近网易公开课的视频接口做了修改，貌似没有提供m3u8文件地址，因此不能像以前可以下载高清视频 </p>
-<p>不过现在提供了部分视频的中英文字幕地址（需要解析），如果下载到本地，需要自己处理文件合并与同步，以及时间延迟等问题 </p>
-<p>折腾了一会，终于搞定，以后可以自己勘误本地字幕文件 </p>
-<p>比如信号处理视频的字幕文件，本人已下载并合并，并调整了时间延迟，确保跟下载视频文件同步 </p>
-<p><img src="/images/20190514081708.png" alt=""><br><img src="/images/20190514082317.png" alt=""> </p>
-
-      
-    </main>
-    <footer class="post-footer">
-      
-      <div class="post-tags">
-        
-        <a class="post-tag button" href="/tags/字幕/" rel="tag"><i class="fas fa-tags"></i>字幕</a>
+        <a class="post-tag button" href="/tags/opencv/" rel="tag"><i class="fas fa-tags"></i>opencv</a>
         
       </div>
       
@@ -769,7 +769,7 @@
     
     <div class="archives-count">
       <div class="site-count-title">归档</div>
-      <div><a href="/archives/">62</a></div>
+      <div><a href="/archives/">63</a></div>
     </div>
     
     
