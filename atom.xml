@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2026-05-21T10:03:09.354Z</updated>
+  <updated>2026-05-21T10:42:29.674Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://yoursite.com/2026/05/21/%E2%9A%A1%20VoxFlash-TTS%EF%BD%9C%E5%90%AC%E8%BF%87%E5%B0%B1%E5%BF%98%E4%B8%8D%E4%BA%86%EF%BC%8C%E5%85%8B%E9%9A%86%E5%8F%AA%E9%9C%80%E4%B8%80%E7%A7%92%E9%92%9F/"/>
     <id>http://yoursite.com/2026/05/21/⚡ VoxFlash-TTS｜听过就忘不了，克隆只需一秒钟/</id>
     <published>2026-05-21T09:26:39.000Z</published>
-    <updated>2026-05-21T10:03:09.354Z</updated>
+    <updated>2026-05-21T10:42:29.674Z</updated>
     
     <content type="html"><![CDATA[<blockquote><p><strong>你的声音，复刻从未如此简单。</strong></p></blockquote><hr><h2 id="什么是-VoxFlash-TTS？"><a href="#什么是-VoxFlash-TTS？" class="headerlink" title="什么是 VoxFlash-TTS？"></a>什么是 VoxFlash-TTS？</h2><p>想象一下——只需要一段几秒钟的录音，就能让 AI 说出和你一模一样的声音，还能说中文、也能说英文。</p><p>这就是 <strong>VoxFlash-TTS</strong> 在做的事情。</p><p>它是目前业界<strong>推理速度最快</strong>的语音克隆系统，不需要昂贵的服务器，普通显卡就能跑，速度快到几乎感觉不到延迟。</p><hr><h2 id="为什么选-VoxFlash？"><a href="#为什么选-VoxFlash？" class="headerlink" title="为什么选 VoxFlash？"></a>为什么选 VoxFlash？</h2><h3 id="🚀-快，真的很快"><a href="#🚀-快，真的很快" class="headerlink" title="🚀 快，真的很快"></a>🚀 快，真的很快</h3><p>普通语音合成系统要花几秒甚至更长时间才能生成音频，VoxFlash 做到了<strong>毫秒级响应</strong>。说完就出声，实时互动毫无压力。</p><h3 id="🎙️-只需一段录音，声音就是你的"><a href="#🎙️-只需一段录音，声音就是你的" class="headerlink" title="🎙️ 只需一段录音，声音就是你的"></a>🎙️ 只需一段录音，声音就是你的</h3><p>不用录几十段、不用反复调整——给它一个参考音频，它就能学会这个人的音色，之后让它说什么都行。</p><h3 id="🌏-中文英文都拿手"><a href="#🌏-中文英文都拿手" class="headerlink" title="🌏 中文英文都拿手"></a>🌏 中文英文都拿手</h3><p>无论是普通话还是英语，VoxFlash 都能自然生成，跨语言克隆同样流畅自然。</p><h3 id="💻-普通电脑就能用"><a href="#💻-普通电脑就能用" class="headerlink" title="💻 普通电脑就能用"></a>💻 普通电脑就能用</h3><p>不需要顶配显卡，低端 GPU 也能顺畅运行。支持 Docker 一键部署，搭建环境几分钟搞定。</p><h3 id="🔒-数据在自己手里"><a href="#🔒-数据在自己手里" class="headerlink" title="🔒 数据在自己手里"></a>🔒 数据在自己手里</h3><p>本地运行，声音数据不出设备，隐私完全自主可控。</p><hr><h2 id="适合哪些人用？"><a href="#适合哪些人用？" class="headerlink" title="适合哪些人用？"></a>适合哪些人用？</h2><table><thead><tr><th>使用场景</th><th>你能做什么</th></tr></thead><tbody><tr><td>🎬 内容创作者</td><td>批量生成有声内容，告别重复录音</td></tr><tr><td>🛒 电商直播</td><td>克隆主播音色，24小时不停播</td></tr><tr><td>📖 有声书制作</td><td>一键生成全书语音，省时省力</td></tr><tr><td>🤖 语音助手开发</td><td>给产品定制专属品牌声音</td></tr><tr><td>👨‍💻 独立开发者</td><td>低门槛接入，快速验证你的想法</td></tr></tbody></table><hr><h2 id="用起来有多简单？"><a href="#用起来有多简单？" class="headerlink" title="用起来有多简单？"></a>用起来有多简单？</h2><p>只需三步：</p><p><strong>第一步</strong>：准备一段参考音频（几秒钟即可）</p><p><strong>第二步</strong>：输入你想让 AI 说的文字</p><p><strong>第三步</strong>：点击生成，毫秒后音频到手</p><hr><h2 id="开发者快速上手"><a href="#开发者快速上手" class="headerlink" title="开发者快速上手"></a>开发者快速上手</h2><p>环境要求：CUDA ≥ 12.3.2</p><figure class="hljs highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 拉取镜像</span></span><br><span class="line">docker pull berlinisaiah/ttsv2:v1</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动服务</span></span><br><span class="line">docker container run -d --gpus all \</span><br><span class="line">  --mount <span class="built_in">type</span>=<span class="built_in">bind</span>,<span class="built_in">source</span>=$(<span class="built_in">pwd</span>)/resources,target=/app/resources \</span><br><span class="line">  -p 8000:8000 berlinisaiah/ttsv2:v1</span><br></pre></td></tr></table></figure><p>启动后访问 <code>http://127.0.0.1:8000/demo.html</code> 即可体验。</p><hr><h2 id="立即体验"><a href="#立即体验" class="headerlink" title="立即体验"></a>立即体验</h2><ul><li>🌐 <strong>在线 Demo</strong>：<a href="https://voxflash.github.io/" target="_blank" rel="noopener">voxflash.github.io</a></li><li>📦 <strong>开源代码</strong>：<a href="https://github.com/chenying99/ttsv2" target="_blank" rel="noopener">github.com/chenying99/ttsv2</a></li></ul><hr><p><em>声音是最有温度的表达方式。VoxFlash-TTS，让每一个声音都值得被记住。</em></p>]]></content>
     
@@ -43,6 +43,10 @@
     
       <category term="语音合成" scheme="http://yoursite.com/tags/%E8%AF%AD%E9%9F%B3%E5%90%88%E6%88%90/"/>
     
+      <category term="深度学习" scheme="http://yoursite.com/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
+      <category term="端侧部署" scheme="http://yoursite.com/tags/%E7%AB%AF%E4%BE%A7%E9%83%A8%E7%BD%B2/"/>
+    
   </entry>
   
   <entry>
@@ -50,7 +54,7 @@
     <link href="http://yoursite.com/2026/03/27/TTS-%E4%B8%9A%E7%95%8C%E6%8E%A8%E7%90%86%E9%80%9F%E5%BA%A6%E6%9C%80%E5%BF%AB%E7%9A%84%E8%AF%AD%E9%9F%B3%E5%85%8B%E9%9A%86%E7%B3%BB%E7%BB%9F/"/>
     <id>http://yoursite.com/2026/03/27/TTS-业界推理速度最快的语音克隆系统/</id>
     <published>2026-03-27T14:56:39.000Z</published>
-    <updated>2026-05-21T10:03:26.185Z</updated>
+    <updated>2026-05-21T10:45:58.401Z</updated>
     
     <content type="html"><![CDATA[<p>业界推理速度最快的语音克隆系统，低端显卡，端侧部署</p><p>fast tts (ZH EN) lightweight</p><p><a href="https://voxflash.github.io/" target="_blank" rel="noopener">https://voxflash.github.io/</a></p><p>github地址：<a href="https://github.com/chenying99/ttsv2" target="_blank" rel="noopener">https://github.com/chenying99/ttsv2</a></p><p><img src="images/20260327-155944.png" alt="ttsv2"></p><p>http:127.0.0.1:8000/demo.html</p><h2 id="Installation"><a href="#Installation" class="headerlink" title="Installation"></a>Installation</h2><p>cuda &gt;= 12.3.2</p><p>docker pull berlinisaiah/ttsv2:v1</p><p>docker container run -it –gpus all –mount type=bind,source=$(pwd)/resources,target=/app/resources -p 8000:8000 berlinisaiah/ttsv2:v1</p><p>docker container run -d –gpus all –mount type=bind,source=$(pwd)/resources,target=/app/resources -p 8000:8000 berlinisaiah/ttsv2:v1</p>]]></content>
     
@@ -69,6 +73,10 @@
     
     
       <category term="语音合成" scheme="http://yoursite.com/tags/%E8%AF%AD%E9%9F%B3%E5%90%88%E6%88%90/"/>
+    
+      <category term="深度学习" scheme="http://yoursite.com/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
+      <category term="端侧部署" scheme="http://yoursite.com/tags/%E7%AB%AF%E4%BE%A7%E9%83%A8%E7%BD%B2/"/>
     
   </entry>
   
