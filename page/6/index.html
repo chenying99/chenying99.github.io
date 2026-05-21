@@ -129,6 +129,66 @@
   
   <article class="article post card" itemscope itemtype="http://schema.org/Article">
     <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/19/opencv4-0-0图像处理：使用轮廓进行边缘检测（二）/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="hedgehog">
+        <meta itemprop="description" content="程序爱好者">
+        <meta itemprop="image" content="/images/avatar.png">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="chenying99'blog">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2019/05/19/opencv4-0-0图像处理：使用轮廓进行边缘检测（二）/" itemprop="url">opencv4.0.0图像处理：使用轮廓进行边缘检测（二）</a>
+      </h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2019-05-19T09:13:22+08:00">2019-05-19 09:13:22</time></span>
+        </span>
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-categories">
+          
+          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/opencv/" itemprop="url" rel="index"><span itemprop="name">opencv</span></a></span>
+        </span>
+        
+        
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      
+      <p>本文在边缘检测的基础上继续，即将上文边缘检测的结果（矩阵）输入，然后进一步发现轮廓并绘制<br>这里先将opencv库的加载设置为类的静态代码块，在相关方法代码体里面不再声明<br><figure class="hljs highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> &#123;		</span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			NativeLoader.loadLibrary(Core.NATIVE_LIBRARY_NAME);</span><br><span class="line">		&#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">			<span class="comment">// TODO Auto-generated catch block</span></span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure></p>
+<p>下面是轮廓绘制的相关方法<br><figure class="hljs highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * 发现轮廓</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@param</span> image</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@param</span> onBlank</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">    <span class="function"><span class="keyword">static</span> List&lt;MatOfPoint&gt; <span class="title">find_contours</span><span class="params">(Mat image, <span class="keyword">boolean</span> onBlank)</span> </span>&#123;</span><br><span class="line">        Mat imageBW = <span class="keyword">new</span> Mat();</span><br><span class="line"></span><br><span class="line">        Imgproc.cvtColor(image, imageBW, Imgproc.COLOR_BGR2GRAY);</span><br><span class="line">        Imgproc.Canny(imageBW,imageBW,<span class="number">100.0</span>,<span class="number">300.0</span>,<span class="number">3</span>, <span class="keyword">true</span>);</span><br><span class="line"></span><br><span class="line">        List&lt;MatOfPoint&gt; contours = <span class="keyword">new</span> ArrayList&lt;MatOfPoint&gt;();</span><br><span class="line">        Imgproc.findContours(imageBW, contours, <span class="keyword">new</span> Mat(), Imgproc.RETR_EXTERNAL, Imgproc.CHAIN_APPROX_NONE);</span><br><span class="line">        <span class="keyword">return</span> contours;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<figure class="hljs highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> Scalar BLACK = <span class="keyword">new</span> Scalar(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>) ;</span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * 绘制轮廓</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@param</span> originalMat</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@param</span> contours</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@param</span> thickness</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">    <span class="function"><span class="keyword">static</span> Mat <span class="title">draw_contours</span><span class="params">(Mat originalMat, List&lt;MatOfPoint&gt; contours, <span class="keyword">int</span> thickness)</span> </span>&#123;</span><br><span class="line">        Mat target =</span><br><span class="line">          <span class="keyword">new</span> Mat(originalMat.height(), originalMat.width(), CvType.CV_8UC3, WHITE);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; contours.size(); i++)</span><br><span class="line">            Imgproc.drawContours(target, contours, i, BLACK, thickness);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> target;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<figure class="hljs highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 发现及绘制轮廓</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> args</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">	</span><br><span class="line">	Mat kittens = imread(<span class="string">"images/three_black_kittens.jpg"</span>);</span><br><span class="line">	List&lt;MatOfPoint&gt; contours = find_contours(kittens, <span class="keyword">true</span>);</span><br><span class="line"></span><br><span class="line">      Mat target = draw_contours(kittens, contours, <span class="number">7</span>);</span><br><span class="line">      imwrite(<span class="string">"output/kittens-contours-7.png"</span>, target);</span><br><span class="line"></span><br><span class="line">      Mat masked = mask_on_bg(target, <span class="string">"images/light-blue-gradient.jpg"</span>);</span><br><span class="line">      imwrite(<span class="string">"output/kittens-masked.png"</span>, masked);</span><br><span class="line"></span><br><span class="line">      target = draw_contours(kittens, contours, <span class="number">3</span>);</span><br><span class="line">      imwrite(<span class="string">"output/kittens-contours-3.png"</span>, target);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>原图<br><img src="/images/three_black_kittens.jpg" alt><br>处理后<br><img src="/images/kittens-contours-3.png" alt><br><img src="/images/kittens-contours-7.png" alt><br>下面是使用掩模的输出<br><figure class="hljs highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> Mat <span class="title">mask_on_bg</span><span class="params">(Mat mask, String backgroundFilePath)</span> </span>&#123;</span><br><span class="line">        Mat target = <span class="keyword">new</span> Mat(mask.height(),mask.width(),CvType.CV_8UC3,WHITE);</span><br><span class="line">        Mat bg = imread(backgroundFilePath);</span><br><span class="line">        Imgproc.resize(bg, bg, target.size());</span><br><span class="line">        bg.copyTo(target, mask);</span><br><span class="line">        <span class="keyword">return</span> target;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<p> <img src="/images/kittens-masked.png" alt> </p>
+
+      
+    </main>
+    <footer class="post-footer">
+      
+      <div class="post-tags">
+        
+        <a class="post-tag button" href="/tags/图像处理/" rel="tag"><i class="fas fa-tags"></i>图像处理</a>
+        
+        <a class="post-tag button" href="/tags/opencv/" rel="tag"><i class="fas fa-tags"></i>opencv</a>
+        
+      </div>
+      
+    </footer>
+  </article>
+  
+  <article class="article post card" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
       <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/18/opencv4.0.0图像处理：边缘检测（一）/">
       <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
         <meta itemprop="name" content="hedgehog">
@@ -676,60 +736,6 @@
     </footer>
   </article>
   
-  <article class="article post card" itemscope itemtype="http://schema.org/Article">
-    <div class="post-block">
-      <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/13/汉语位移事件的词化方式/">
-      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <meta itemprop="name" content="hedgehog">
-        <meta itemprop="description" content="程序爱好者">
-        <meta itemprop="image" content="/images/avatar.png">
-      </span>
-      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-        <meta itemprop="name" content="chenying99'blog">
-      </span>
-    </div>
-    <header class="post-header">
-      <h1 class="post-title" itemprop="name headline">
-        <a class="post-title-link post-title-link-external" href="/2018/09/13/汉语位移事件的词化方式/" itemprop="url">汉语位移事件的词化方式</a>
-      </h1>
-      <div class="post-meta">
-        
-        <span class="post-date">
-          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2018-09-13T01:48:09+08:00">2018-09-13 01:48:09</time></span>
-        </span>
-        
-        
-        
-        <span class="post-meta-divider divider">|</span>
-        
-        <span class="post-categories">
-          
-          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/语言学/" itemprop="url" rel="index"><span itemprop="name">语言学</span></a></span>
-        </span>
-        
-        
-        
-        
-      </div>
-    </header>
-    <main class="post-main" itemprop="articleBody">
-      
-      <p>位移事件通常包括射体、界标、位移、路径、方式、原因等，由于不同语言的认知模式的差异，而形成不同的词化方式<br>按照talmy的说法，按动词是否包含路径分为动词框架语言与卫星框架语言  </p>
-<p>陨石于宋五，六鷁退飞过宋都<br>十有六年春，王正月戊申朔，陨石于宋五。是月，六鹢退飞，过宋都。曷为先言陨而后言石？陨石记闻，闻其嗔然，视之则石，察之则五。是月者何？仅逮是月也。何以不日？晦日也。晦则何以不言晦？《春秋》不书晦也。朔有事则书，晦虽有事不书。曷为先言六而后言鹢？六鹢退飞，记见也，视之则六，察之则鹢，徐而察之则退飞。五石六鹢，何以书？记异也。外异不书，此何以书？为王者之后，记异也。（《公羊传·僖公十六年》）<br>其中“六鷁”为射体，“宋都”为界标，”退飞”包含位移与方式，“【过】宋都”则为路径</p>
-
-      
-    </main>
-    <footer class="post-footer">
-      
-      <div class="post-tags">
-        
-        <a class="post-tag button" href="/tags/位移事件/" rel="tag"><i class="fas fa-tags"></i>位移事件</a>
-        
-      </div>
-      
-    </footer>
-  </article>
-  
   
   <nav class="pagination">
     <a class="extend prev" rel="prev" href="/page/5/"><i class="fas fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/7/"><i class="fas fa-angle-right" aria-label="下一页"></i></a>
@@ -773,7 +779,7 @@
     
     <div class="archives-count">
       <div class="site-count-title">归档</div>
-      <div><a href="/archives/">64</a></div>
+      <div><a href="/archives/">65</a></div>
     </div>
     
     
