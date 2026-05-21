@@ -54,7 +54,7 @@
     <link href="http://yoursite.com/2026/03/27/TTS-%E4%B8%9A%E7%95%8C%E6%8E%A8%E7%90%86%E9%80%9F%E5%BA%A6%E6%9C%80%E5%BF%AB%E7%9A%84%E8%AF%AD%E9%9F%B3%E5%85%8B%E9%9A%86%E7%B3%BB%E7%BB%9F/"/>
     <id>http://yoursite.com/2026/03/27/TTS-业界推理速度最快的语音克隆系统/</id>
     <published>2026-03-27T14:56:39.000Z</published>
-    <updated>2026-05-21T10:45:58.401Z</updated>
+    <updated>2026-05-21T10:52:54.668Z</updated>
     
     <content type="html"><![CDATA[<p>业界推理速度最快的语音克隆系统，低端显卡，端侧部署</p><p>fast tts (ZH EN) lightweight</p><p><a href="https://voxflash.github.io/" target="_blank" rel="noopener">https://voxflash.github.io/</a></p><p>github地址：<a href="https://github.com/chenying99/ttsv2" target="_blank" rel="noopener">https://github.com/chenying99/ttsv2</a></p><p><img src="images/20260327-155944.png" alt="ttsv2"></p><p>http:127.0.0.1:8000/demo.html</p><h2 id="Installation"><a href="#Installation" class="headerlink" title="Installation"></a>Installation</h2><p>cuda &gt;= 12.3.2</p><p>docker pull berlinisaiah/ttsv2:v1</p><p>docker container run -it –gpus all –mount type=bind,source=$(pwd)/resources,target=/app/resources -p 8000:8000 berlinisaiah/ttsv2:v1</p><p>docker container run -d –gpus all –mount type=bind,source=$(pwd)/resources,target=/app/resources -p 8000:8000 berlinisaiah/ttsv2:v1</p>]]></content>
     
@@ -69,7 +69,9 @@
     
     </summary>
     
-      <category term="TTS" scheme="http://yoursite.com/categories/TTS/"/>
+      <category term="深度学习" scheme="http://yoursite.com/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
+      <category term="语音合成TTS" scheme="http://yoursite.com/categories/%E8%AF%AD%E9%9F%B3%E5%90%88%E6%88%90TTS/"/>
     
     
       <category term="语音合成" scheme="http://yoursite.com/tags/%E8%AF%AD%E9%9F%B3%E5%90%88%E6%88%90/"/>
