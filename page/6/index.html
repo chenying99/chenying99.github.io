@@ -129,6 +129,62 @@
   
   <article class="article post card" itemscope itemtype="http://schema.org/Article">
     <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/19/opencv4-0-0图像处理：人脸识别（三）/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="hedgehog">
+        <meta itemprop="description" content="程序爱好者">
+        <meta itemprop="image" content="/images/avatar.png">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="chenying99'blog">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2019/05/19/opencv4-0-0图像处理：人脸识别（三）/" itemprop="url">opencv4.0.0图像处理：人脸识别（三）</a>
+      </h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2019-05-19T09:50:48+08:00">2019-05-19 09:50:48</time></span>
+        </span>
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-categories">
+          
+          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/opencv/" itemprop="url" rel="index"><span itemprop="name">opencv</span></a></span>
+        </span>
+        
+        
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      
+      <p>opencv官方自带了人脸识别的模型，这里测试一下效果<br><figure class="hljs highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * 人脸识别测试</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@param</span> args</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		CascadeClassifier classifier = <span class="keyword">new</span> CascadeClassifier(<span class="string">"haarcascade_frontalface_alt.xml"</span>);</span><br><span class="line"></span><br><span class="line">		Mat image = Imgcodecs.imread(<span class="string">"images/chuanpu.png"</span>);</span><br><span class="line"></span><br><span class="line">		MatOfRect faces = <span class="keyword">new</span> MatOfRect();</span><br><span class="line">		classifier.detectMultiScale(image, faces);</span><br><span class="line"></span><br><span class="line">		Rect[] rects = faces.toArray();</span><br><span class="line"></span><br><span class="line">		System.out.println(<span class="string">"识别人脸数："</span> + rects.length);</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; rects.length; i++) &#123;</span><br><span class="line">			Imgproc.rectangle(image, <span class="keyword">new</span> Point(rects[i].x, rects[i].y),</span><br><span class="line">					<span class="keyword">new</span> Point(rects[i].x + rects[i].width, rects[i].y + rects[i].height), <span class="keyword">new</span> Scalar(<span class="number">0</span>, <span class="number">0</span>, <span class="number">255</span>), <span class="number">1</span>);</span><br><span class="line">			Imgproc.putText(image, <span class="string">"Human"</span>, <span class="keyword">new</span> Point(rects[i].x, rects[i].y), Imgproc.FONT_HERSHEY_PLAIN, <span class="number">1.0</span>,</span><br><span class="line">					<span class="keyword">new</span> Scalar(<span class="number">0</span>, <span class="number">255</span>, <span class="number">0</span>), <span class="number">1</span>, Imgproc.LINE_AA, <span class="keyword">false</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		imwrite(<span class="string">"output/face2.png"</span>, image);		</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure></p>
+<p><img src="/images/face6.png" alt> </p>
+
+      
+    </main>
+    <footer class="post-footer">
+      
+      <div class="post-tags">
+        
+        <a class="post-tag button" href="/tags/图像处理/" rel="tag"><i class="fas fa-tags"></i>图像处理</a>
+        
+        <a class="post-tag button" href="/tags/opencv/" rel="tag"><i class="fas fa-tags"></i>opencv</a>
+        
+      </div>
+      
+    </footer>
+  </article>
+  
+  <article class="article post card" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
       <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/19/opencv4-0-0图像处理：使用轮廓进行边缘检测（二）/">
       <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
         <meta itemprop="name" content="hedgehog">
@@ -679,63 +735,6 @@
     </footer>
   </article>
   
-  <article class="article post card" itemscope itemtype="http://schema.org/Article">
-    <div class="post-block">
-      <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/13/英汉存现句的认知分析/">
-      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <meta itemprop="name" content="hedgehog">
-        <meta itemprop="description" content="程序爱好者">
-        <meta itemprop="image" content="/images/avatar.png">
-      </span>
-      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-        <meta itemprop="name" content="chenying99'blog">
-      </span>
-    </div>
-    <header class="post-header">
-      <h1 class="post-title" itemprop="name headline">
-        <a class="post-title-link post-title-link-external" href="/2018/09/13/英汉存现句的认知分析/" itemprop="url">英汉存现句的认知分析</a>
-      </h1>
-      <div class="post-meta">
-        
-        <span class="post-date">
-          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2018-09-13T02:33:18+08:00">2018-09-13 02:33:18</time></span>
-        </span>
-        
-        
-        
-        <span class="post-meta-divider divider">|</span>
-        
-        <span class="post-categories">
-          
-          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/语言学/" itemprop="url" rel="index"><span itemprop="name">语言学</span></a></span>
-        </span>
-        
-        
-        
-        
-      </div>
-    </header>
-    <main class="post-main" itemprop="articleBody">
-      
-      <p>“主席团坐在台上”、“台上坐着主席团”，这是什么语言现象？  </p>
-<p>据说五六十年代我国老一辈语言学家争论，上面不同的两句，谁是主语、谁是谓语？争来争去也没争个所以然来<br>这些死脑筋，一个句子一定要“主谓宾”五脏俱全么？<br>通常“主谓宾”是“施事-动作-受事”这一认知概念的语法化  </p>
-<p>而上面的句子所体现的是表示事物的存在，即所谓存现句，是“图像-背景”这一认知概念的语法化</p>
-<p>其中，“主题团坐在台上”，“主席团”是角色原型，是认知参照物，是已知的，“台上”是未知的；<br>而“台上坐着主席团”，“台上”是角色原型，作为认知参照物，“主席团”是未知的  </p>
-<p>英语中，”there is a book on the table”,这里英语存现句中，是图像在前，而背景在后；通常背景是已知的、无界的，而图像是未知的、有界的</p>
-
-      
-    </main>
-    <footer class="post-footer">
-      
-      <div class="post-tags">
-        
-        <a class="post-tag button" href="/tags/存现句/" rel="tag"><i class="fas fa-tags"></i>存现句</a>
-        
-      </div>
-      
-    </footer>
-  </article>
-  
   
   <nav class="pagination">
     <a class="extend prev" rel="prev" href="/page/5/"><i class="fas fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/7/"><i class="fas fa-angle-right" aria-label="下一页"></i></a>
@@ -779,7 +778,7 @@
     
     <div class="archives-count">
       <div class="site-count-title">归档</div>
-      <div><a href="/archives/">65</a></div>
+      <div><a href="/archives/">66</a></div>
     </div>
     
     

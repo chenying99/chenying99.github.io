@@ -129,6 +129,100 @@
   
   <article class="article post card" itemscope itemtype="http://schema.org/Article">
     <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/20/python数据分析（一）/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="hedgehog">
+        <meta itemprop="description" content="程序爱好者">
+        <meta itemprop="image" content="/images/avatar.png">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="chenying99'blog">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2019/08/20/python数据分析（一）/" itemprop="url">python数据分析（一）</a>
+      </h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2019-08-20T04:24:25+08:00">2019-08-20 04:24:25</time></span>
+        </span>
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-categories">
+          
+          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a></span><i class="fas fa-angle-right"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/数据分析/" itemprop="url" rel="index"><span itemprop="name">数据分析</span></a></span>
+        </span>
+        
+        
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      
+      <figure class="hljs highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line">df = pd.read_csv(<span class="string">'datasets/avocado.csv'</span>)</span><br><span class="line"></span><br><span class="line">df.head()</span><br></pre></td></tr></table></figure>
+<p><img src="/images/pandas1.png" alt></p>
+<figure class="hljs highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.tail()</span><br></pre></td></tr></table></figure>
+<p><img src="/images/pandas2.png" alt></p>
+<figure class="hljs highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df[<span class="string">'AveragePrice'</span>].head()</span><br></pre></td></tr></table></figure>
+<pre><code>0    1.33
+1    1.35
+2    0.93
+3    1.08
+4    1.28
+Name: AveragePrice, dtype: float64
+</code></pre><figure class="hljs highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.AveragePrice.head()</span><br></pre></td></tr></table></figure>
+<pre><code>0    1.33
+1    1.35
+2    0.93
+3    1.08
+4    1.28
+Name: AveragePrice, dtype: float64
+</code></pre><figure class="hljs highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">albany_df = df[df[<span class="string">'region'</span>] == <span class="string">'Albany'</span>]</span><br><span class="line">albany_df.head()</span><br></pre></td></tr></table></figure>
+<p><img src="/images/pandas3.png" alt></p>
+<figure class="hljs highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">albany_df.index</span><br></pre></td></tr></table></figure>
+<pre><code>Int64Index([    0,     1,     2,     3,     4,     5,     6,     7,     8,
+                9,
+            ...
+            17603, 17604, 17605, 17606, 17607, 17608, 17609, 17610, 17611,
+            17612],
+           dtype=&apos;int64&apos;, length=338)
+</code></pre><figure class="hljs highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">albany_df = albany_df.set_index(<span class="string">'Date'</span>)</span><br><span class="line">albany_df.head()</span><br></pre></td></tr></table></figure>
+<p><img src="/images/pandas4.png" alt></p>
+<figure class="hljs highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">albany_df.index</span><br></pre></td></tr></table></figure>
+<pre><code>Index([&apos;2015-12-27&apos;, &apos;2015-12-20&apos;, &apos;2015-12-13&apos;, &apos;2015-12-06&apos;, &apos;2015-11-29&apos;,
+       &apos;2015-11-22&apos;, &apos;2015-11-15&apos;, &apos;2015-11-08&apos;, &apos;2015-11-01&apos;, &apos;2015-10-25&apos;,
+       ...
+       &apos;2018-03-11&apos;, &apos;2018-03-04&apos;, &apos;2018-02-25&apos;, &apos;2018-02-18&apos;, &apos;2018-02-11&apos;,
+       &apos;2018-02-04&apos;, &apos;2018-01-28&apos;, &apos;2018-01-21&apos;, &apos;2018-01-14&apos;, &apos;2018-01-07&apos;],
+      dtype=&apos;object&apos;, name=&apos;Date&apos;, length=338)
+</code></pre><figure class="hljs highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">albany_df.plot()</span><br></pre></td></tr></table></figure>
+<pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x15c18c71e88&gt;
+</code></pre><p><img src="/images/output_8_1.png" alt></p>
+<figure class="hljs highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">albany_df[<span class="string">'AveragePrice'</span>].plot()</span><br></pre></td></tr></table></figure>
+<pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x15c18ad00c8&gt;
+</code></pre><p><img src="/images/output_9_1.png" alt></p>
+
+      
+    </main>
+    <footer class="post-footer">
+      
+      <div class="post-tags">
+        
+        <a class="post-tag button" href="/tags/数据分析/" rel="tag"><i class="fas fa-tags"></i>数据分析</a>
+        
+      </div>
+      
+    </footer>
+  </article>
+  
+  <article class="article post card" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
       <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/14/python开发：opencv图像处理（三）/">
       <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
         <meta itemprop="name" content="hedgehog">
@@ -634,63 +728,6 @@
     </footer>
   </article>
   
-  <article class="article post card" itemscope itemtype="http://schema.org/Article">
-    <div class="post-block">
-      <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/10/python开发：scrapy爬虫（三）/">
-      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <meta itemprop="name" content="hedgehog">
-        <meta itemprop="description" content="程序爱好者">
-        <meta itemprop="image" content="/images/avatar.png">
-      </span>
-      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-        <meta itemprop="name" content="chenying99'blog">
-      </span>
-    </div>
-    <header class="post-header">
-      <h1 class="post-title" itemprop="name headline">
-        <a class="post-title-link post-title-link-external" href="/2019/08/10/python开发：scrapy爬虫（三）/" itemprop="url">python开发：scrapy爬虫（三）</a>
-      </h1>
-      <div class="post-meta">
-        
-        <span class="post-date">
-          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2019-08-10T20:50:32+08:00">2019-08-10 20:50:32</time></span>
-        </span>
-        
-        
-        
-        <span class="post-meta-divider divider">|</span>
-        
-        <span class="post-categories">
-          
-          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a></span>
-        </span>
-        
-        
-        
-        
-      </div>
-    </header>
-    <main class="post-main" itemprop="articleBody">
-      
-      <p>上文已实现了简单的抓取文章的功能，这里进一步改进 </p>
-<p>修改scrapytutorial目录的items.py文件 </p>
-<figure class="hljs highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> scrapy</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ScrapytutorialItem</span><span class="params">(scrapy.Item)</span>:</span></span><br><span class="line">    <span class="comment"># define the fields for your item here like:</span></span><br><span class="line">    <span class="comment"># name = scrapy.Field()</span></span><br><span class="line">    title = scrapy.Field()</span><br><span class="line">    link = scrapy.Field()</span><br><span class="line">    <span class="comment"># pass</span></span><br></pre></td></tr></table></figure>
-<p>修改spiders目录blog_spider.py文件<br><figure class="hljs highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> scrapy</span><br><span class="line"><span class="keyword">from</span> scrapy.selector <span class="keyword">import</span> Selector</span><br><span class="line"><span class="keyword">from</span> scrapy.http <span class="keyword">import</span> HtmlResponse</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> ..items <span class="keyword">import</span> ScrapytutorialItem</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BlogSpider</span><span class="params">(scrapy.Spider)</span>:</span></span><br><span class="line">    name = <span class="string">'blog'</span></span><br><span class="line">    start_urls = &#123;</span><br><span class="line">        <span class="string">'https://www.cnblogs.com/chenying99/'</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">parse</span><span class="params">(self, response)</span>:</span></span><br><span class="line"></span><br><span class="line">        items = ScrapytutorialItem()</span><br><span class="line">        container = response.css(<span class="string">'#main'</span>)[<span class="number">0</span>]</span><br><span class="line">        posts = container.css(<span class="string">'div.post'</span>)</span><br><span class="line">        <span class="keyword">for</span> article <span class="keyword">in</span> posts:</span><br><span class="line"></span><br><span class="line">            title = article.css(<span class="string">'a.postTitle2::text'</span>).extract_first().strip()</span><br><span class="line">            link = article.css(<span class="string">'a.postTitle2::attr(href)'</span>).extract_first()</span><br><span class="line">            items[<span class="string">'title'</span>] = title</span><br><span class="line">            items[<span class="string">'link'</span>] = link</span><br><span class="line">            <span class="keyword">yield</span> items</span><br></pre></td></tr></table></figure></p>
-<p>重新运行scrapy crawl blog<br><img src="/images/scrapy3.png" alt> </p>
-
-      
-    </main>
-    <footer class="post-footer">
-      
-      <div class="post-tags">
-        
-        <a class="post-tag button" href="/tags/scrapy/" rel="tag"><i class="fas fa-tags"></i>scrapy</a>
-        
-      </div>
-      
-    </footer>
-  </article>
-  
   
   <nav class="pagination">
     <a class="extend prev" rel="prev" href="/page/3/"><i class="fas fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/5/"><i class="fas fa-angle-right" aria-label="下一页"></i></a>
@@ -734,7 +771,7 @@
     
     <div class="archives-count">
       <div class="site-count-title">归档</div>
-      <div><a href="/archives/">65</a></div>
+      <div><a href="/archives/">66</a></div>
     </div>
     
     
