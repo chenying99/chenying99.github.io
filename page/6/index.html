@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html>
+  <head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#33363b">
+    <meta name="msapplication-TileColor" content="#33363b">
+    
+    
+    
+    <meta name="keywords" content="自然语言处理, 人工智能, 图像识别, 信息检索">
+    
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicons/android-chrome-192x192.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png">
+    
+    
+    <link rel="mask-icon" href="/favicons/safari-pinned-tab.svg" color="#33363b">
+    
+    
+    <link rel="manifest" href="/favicons/site.webmanifest">
+    
+    
+    <meta name="msapplication-config" content="/favicons/browserconfig.xml">
+    
+    
+    <link rel="alternate" href="/atom.xml" title="chenying99'blog" type="application/atom+xml">
+    
+    
+    <link rel="shortcut icon" type="image/x-icon" href="/favicons/favicon.ico">
+    
+    
+    <link rel="stylesheet" type="text/css" href="/css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/css/index.css">
+    
+    <link rel="stylesheet" type="text/css" href="/css/sidebar.css">
+    
+    
+<link rel="stylesheet" type="text/css" href="/css/page.css">
+<link rel="stylesheet" type="text/css" href="/css/post.css">
+
+    <link rel="stylesheet" type="text/css" href="/css/custom.css">
+    <link rel="stylesheet" type="text/css" href="/css/atom-one-dark.css">
+    <link rel="stylesheet" type="text/css" href="/css/lightgallery.min.css">
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script defer type="text/javascript" src="/js/util.js"></script>
+    <script defer type="text/javascript" src="/js/scrollspy.js"></script>
+    <script defer type="text/javascript" src="/js/fontawesome-all.min.js"></script>
+    <script defer type="text/javascript" src="/js/lightgallery.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-fullscreen.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-hash.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-pager.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-thumbnail.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-zoom.min.js"></script>
+    
+    <script defer src="/js/busuanzi.pure.mini.js"></script>
+    
+    
+    <script defer type="text/javascript" src="/js/search.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+      var searchPath = "search.xml";
+      if (searchPath.length === 0) {
+        searchPath = "search.xml";
+      }
+      var path = "/" + searchPath;
+      searchFunc(path, "search-input", "search-result");
+    });
+    </script>
+    
+    
+    <script defer type="text/javascript" src="/js/index.js"></script>
+    
+    <script defer type="text/javascript" src="/js/custom.js"></script>
+    <title>chenying99'blog - 君子博学而日参省乎己，则知明而行无过矣</title>
+  </head>
+  <body itemscope itemtype="http://schema.org/WebPage" lang="zh_CN" data-spy="scroll" data-target=".list-group">
+    
+<header id="header" class="header" style="background: #33363b;">
+  <div class="container">
+    <div class="header-container">
+      <div class="header-title">
+        <h1 class="title"><a href="/">chenying99'blog</a></h1>
+        <h2 class="subtitle">君子博学而日参省乎己，则知明而行无过矣</h2>
+      </div>
+      
+      <div class="logo">
+        <img src="/images/logo.png" alt="logo">
+      </div>
+      
+    </div>
+    <nav id="nav" class="nav">
+      <a id="nav-toggle" class="nav-toggle" aria-hidden="true"><i class="fas fa-bars" aria-label="切换导航栏"></i></a>
+      <ul id="menu" role="menubar" aria-hidden="false">
+        
+        <li role="menuitem"><a href="/">首页</a></li>
+        
+        <li role="menuitem"><a href="/archives/">归档</a></li>
+        
+        <li role="menuitem"><a href="/categories/">分类</a></li>
+        
+        <li role="menuitem"><a href="/tags/">标签</a></li>
+        
+        <li role="menuitem"><a href="/about/">关于</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+    <main id="main" class="main">
+      <div class="container">
+        <div class="main-container">
+          <div class="content">
+            
+
+<div id="index" class="index page">
+  
+  <article class="article post card" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/18/opencv4.0.0图像处理：边缘检测（一）/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="hedgehog">
+        <meta itemprop="description" content="程序爱好者">
+        <meta itemprop="image" content="/images/avatar.png">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="chenying99'blog">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2019/05/18/opencv4.0.0图像处理：边缘检测（一）/" itemprop="url">opencv4.0.0图像处理：边缘检测（一）</a>
+      </h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2019-05-18T09:17:45+08:00">2019-05-18 09:17:45</time></span>
+        </span>
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-categories">
+          
+          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/opencv/" itemprop="url" rel="index"><span itemprop="name">opencv</span></a></span>
+        </span>
+        
+        
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      
+      <p>opencv是一个C++语言库，对于java程序员来说，貌似不是很友好；不过java程序员可以利用jni调用的方式来处理 </p>
+<p>for example:</p>
+<figure class="hljs highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main1</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        NativeLoader.loadLibrary(Core.NATIVE_LIBRARY_NAME);</span><br><span class="line">        Mat hello = Mat.eye(<span class="number">150</span>, <span class="number">150</span>, CvType.CV_8SC3);</span><br><span class="line">        System.out.println(hello.dump());</span><br><span class="line">        hello.setTo(<span class="keyword">new</span> Scalar(<span class="number">180</span>,<span class="number">80</span>,<span class="number">250</span>));</span><br><span class="line">        Mat sub=hello.submat(<span class="number">0</span>,<span class="number">50</span>,<span class="number">0</span>,<span class="number">50</span>);</span><br><span class="line">        sub.setTo(<span class="keyword">new</span> Scalar(<span class="number">0</span>,<span class="number">0</span>,<span class="number">100</span>));</span><br><span class="line">        <span class="comment">//imwrite("E:\\idea-workspace\\hellocv\\dev\\hello.png",hello);</span></span><br><span class="line">        <span class="comment">//System.out.println(hello.dump());</span></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<figure class="hljs highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">    * 边缘检测算子</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> args</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@throws</span> Exception</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">       NativeLoader.loadLibrary(Core.NATIVE_LIBRARY_NAME);</span><br><span class="line">       Mat tools=Imgcodecs.imread(<span class="string">"images/tools.jpg"</span>);</span><br><span class="line">       Imgproc.cvtColor(tools, tools, Imgproc.COLOR_RGB2GRAY);</span><br><span class="line">       Imgproc.Canny(tools, tools,<span class="number">100.0</span>, <span class="number">300.0</span>,<span class="number">3</span>,<span class="keyword">true</span>);</span><br><span class="line"></span><br><span class="line">       Mat invetedTools=tools.clone();</span><br><span class="line">       bitwise_not(invetedTools, invetedTools);</span><br><span class="line">       Imgcodecs.imwrite(<span class="string">"output/tools-04.png"</span>, invetedTools);</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p> <img src="/images/tools.jpg" alt><br><img src="/images/tools-04.png" alt> </p>
+<p>图像掩模<br><figure class="hljs highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> Scalar WHITE = <span class="keyword">new</span> Scalar(<span class="number">255</span>,<span class="number">255</span>,<span class="number">255</span>);</span><br><span class="line"> <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 图像掩模</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> args</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@throws</span> Exception</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">		</span><br><span class="line">		NativeLoader.loadLibrary(Core.NATIVE_LIBRARY_NAME);</span><br><span class="line">		</span><br><span class="line">		Mat kittens = imread(<span class="string">"images/tools.jpg"</span>);</span><br><span class="line"></span><br><span class="line">		Imgproc.cvtColor(kittens, kittens, Imgproc.COLOR_RGB2GRAY);</span><br><span class="line">		Imgproc.Canny(kittens, kittens, <span class="number">100.0</span>, <span class="number">300.0</span>, <span class="number">3</span>, <span class="keyword">true</span>);</span><br><span class="line">		bitwise_not(kittens, kittens);</span><br><span class="line">		<span class="comment">// System.out.println(kittens.dump());</span></span><br><span class="line"></span><br><span class="line">		Mat target = <span class="keyword">new</span> Mat(kittens.height(), kittens.width(), CvType.CV_8UC3, WHITE);</span><br><span class="line">		Mat bg = imread(<span class="string">"images/light-blue-gradient.jpg"</span>);</span><br><span class="line">		Imgproc.resize(bg, bg, target.size());</span><br><span class="line">		bg.copyTo(target, kittens);		</span><br><span class="line"></span><br><span class="line">		imwrite(<span class="string">"output/kittens-03.png"</span>, target);</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure></p>
+<p><img src="/images/kittens-03.png" alt> </p>
+
+      
+    </main>
+    <footer class="post-footer">
+      
+      <div class="post-tags">
+        
+        <a class="post-tag button" href="/tags/图像处理/" rel="tag"><i class="fas fa-tags"></i>图像处理</a>
+        
+        <a class="post-tag button" href="/tags/opencv/" rel="tag"><i class="fas fa-tags"></i>opencv</a>
+        
+      </div>
+      
+    </footer>
+  </article>
+  
+  <article class="article post card" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/14/抽取网易公开课中英文字幕及合并、同步等/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="hedgehog">
+        <meta itemprop="description" content="程序爱好者">
+        <meta itemprop="image" content="/images/avatar.png">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="chenying99'blog">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2019/05/14/抽取网易公开课中英文字幕及合并、同步等/" itemprop="url">抽取网易公开课中英文字幕及合并、同步等</a>
+      </h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2019-05-14T08:05:59+08:00">2019-05-14 08:05:59</time></span>
+        </span>
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-categories">
+          
+          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/java/" itemprop="url" rel="index"><span itemprop="name">java</span></a></span>
+        </span>
+        
+        
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      
+      <p>最近网易公开课的视频接口做了修改，貌似没有提供m3u8文件地址，因此不能像以前可以下载高清视频 </p>
+<p>不过现在提供了部分视频的中英文字幕地址（需要解析），如果下载到本地，需要自己处理文件合并与同步，以及时间延迟等问题 </p>
+<p>折腾了一会，终于搞定，以后可以自己勘误本地字幕文件 </p>
+<p>比如信号处理视频的字幕文件，本人已下载并合并，并调整了时间延迟，确保跟下载视频文件同步 </p>
+<p><img src="/images/20190514081708.png" alt><br><img src="/images/20190514082317.png" alt> </p>
+
+      
+    </main>
+    <footer class="post-footer">
+      
+      <div class="post-tags">
+        
+        <a class="post-tag button" href="/tags/字幕/" rel="tag"><i class="fas fa-tags"></i>字幕</a>
+        
+      </div>
+      
+    </footer>
+  </article>
+  
+  <article class="article post card" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/12/信号调制及复指数载波、正弦载波及脉冲载波/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="hedgehog">
+        <meta itemprop="description" content="程序爱好者">
+        <meta itemprop="image" content="/images/avatar.png">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="chenying99'blog">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2019/05/12/信号调制及复指数载波、正弦载波及脉冲载波/" itemprop="url">信号调制及复指数载波、正弦载波及脉冲载波</a>
+      </h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2019-05-12T04:40:27+08:00">2019-05-12 04:40:27</time></span>
+        </span>
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-categories">
+          
+          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/信号与系统/" itemprop="url" rel="index"><span itemprop="name">信号与系统</span></a></span>
+        </span>
+        
+        
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      
+      <p>信号滤波及调制等，通常基于傅里叶变换属性；滤波器的理论依据在于时域信号的卷积等于相对应的频域的乘积；调制的理论依据在于时域信号的乘积等于相对应的频域的卷积；（貌似有点抽象） </p>
+<p>本文讨论信号的调制，</p>
+
+      
+    </main>
+    <footer class="post-footer">
+      
+      <div class="post-tags">
+        
+        <a class="post-tag button" href="/tags/数字信号处理/" rel="tag"><i class="fas fa-tags"></i>数字信号处理</a>
+        
+        <a class="post-tag button" href="/tags/傅里叶变换/" rel="tag"><i class="fas fa-tags"></i>傅里叶变换</a>
+        
+        <a class="post-tag button" href="/tags/卷积/" rel="tag"><i class="fas fa-tags"></i>卷积</a>
+        
+      </div>
+      
+    </footer>
+  </article>
+  
+  <article class="article post card" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/12/古汉语中的词类活用及其语义功能/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="hedgehog">
+        <meta itemprop="description" content="程序爱好者">
+        <meta itemprop="image" content="/images/avatar.png">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="chenying99'blog">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2019/05/12/古汉语中的词类活用及其语义功能/" itemprop="url">古汉语中的词类活用及其语义功能</a>
+      </h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2019-05-12T04:35:40+08:00">2019-05-12 04:35:40</time></span>
+        </span>
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-categories">
+          
+          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/语言学/" itemprop="url" rel="index"><span itemprop="name">语言学</span></a></span>
+        </span>
+        
+        
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      
+      <p>在古汉语中，词类活用是一种较为普遍的语法现象，如形容词作动词、名词作动词、名词作状语等</p>
+<p>以往的语言教学对这些词类活用现象，诸如解释为意动用法、使动用法等，解释比较笼统</p>
+<p><strong>形容词作动词，使动用法</strong></p>
+<p>例句：</p>
+<p>1）春风又绿江南岸<br>2）白了少年头<br>3）红了樱桃，绿了芭蕉<br>4) 富润室，德润身，心广体胖，故君子必诚其意</p>
+<p>传统语法将上面的句子中的形容词作动词，通常解释为使动用法；这个解释当然没有问题，不过本人觉得还是解释得比较笼统</p>
+<p>如果参考动词框架语言及卫星框架语言中的分析，上述语法现象可以考虑进一步解释</p>
+<p>词类活用现象，它相当于补充了动作之外的其他信息，诸如原因、效果、方式、处所等</p>
+<p>形容词作动词，即使动用法，它通常表示动作+效果</p>
+<p>上面的句子貌似为致使事件，与位移事件具有同源性，即都表示状态的变化；</p>
+<p><strong>形容词作动词，意动用法</strong></p>
+<p>例句：</p>
+<p>5）然则吾大天地而小豪末，可乎？《庄子》<br>6）吾妻之美我者，私我也；妾之美我者，畏我也；客之美我者，欲有求于我也。《战国策·齐策》<br>7）是故明君贵五谷而贱金玉《论贵粟疏》<br>8）甘其食，美其服，安其居，乐其俗《老子》</p>
+<p>上面句子传统解释为意动用法，亦可解释为动作+效果</p>
+<p><strong>名词用作动词，通常表示方式、工具、处所等</strong></p>
+<p>9）左右欲刃相如《史记》<br>10）卒中往往语，皆指目陈胜《史记》<br>11）假舟楫者，非能水也《荀子》<br>12）策之不以其道《马说》</p>
+<p><strong>名词作状语，则似乎更明显</strong></p>
+<p>13）天下云集响应,赢粮而景从《过秦论》<br>14）嫂蛇形匍匐《战国策·秦策》<br>15）君为我呼入,吾得兄事之《史记·项羽本纪》<br>16）叩石垦壤,箕畚运于渤海之尾《列子·汤问》<br>17）妾在巫山之阳,高丘之岨,旦为行云,暮为行雨,朝朝暮暮,阳台之下《高唐赋》</p>
+<p>名词作状语，通常表示方式、工具、时间、处所等</p>
+<p>……</p>
+
+      
+    </main>
+    <footer class="post-footer">
+      
+      <div class="post-tags">
+        
+        <a class="post-tag button" href="/tags/隐喻/" rel="tag"><i class="fas fa-tags"></i>隐喻</a>
+        
+      </div>
+      
+    </footer>
+  </article>
+  
+  <article class="article post card" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/12/动词框架语言与卫星框架语言及延伸思考/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="hedgehog">
+        <meta itemprop="description" content="程序爱好者">
+        <meta itemprop="image" content="/images/avatar.png">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="chenying99'blog">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2019/05/12/动词框架语言与卫星框架语言及延伸思考/" itemprop="url">动词框架语言与卫星框架语言及延伸思考</a>
+      </h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2019-05-12T03:47:35+08:00">2019-05-12 03:47:35</time></span>
+        </span>
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-categories">
+          
+          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/语言学/" itemprop="url" rel="index"><span itemprop="name">语言学</span></a></span>
+        </span>
+        
+        
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      
+      <p>在语言学中，从C·J·Fillmore的格语法到框架语义学，相对乔姆斯基的生成语法，对语言的语义方面做了进一步的研究； </p>
+<p>而其缺点在于，认为语法只是表现语义的形式，相同的语义用不同的语法形式表示；即将语法视为被动的形式，而忽视其对语义的影响 </p>
+<p>现代认知语言学根据语法原型及图像背景等理论，语法实际是不同语言基于其原型的表现形式，以及不同的注意焦点等，因而表现了不同的语义 </p>
+<p>认知语言学家talmy认为，在位移事件中，包含四中基本概念要素，即图像(figure)、背景(ground)、位移（motion）、 路径(path) </p>
+<p>根据路径表示的不同，将语言分为动词框架语言与卫星框架语言； </p>
+<ol>
+<li><p>动词包含路径，称之为动词框架语言 </p>
+</li>
+<li><p>动词不包含路径（路径由小品词表示），则称之为卫星框架语言 </p>
+</li>
+</ol>
+<p>（由是观之，传统的格语法等，基于机械的语义匹配的语义格，恐怕有其不妥之处）</p>
+<p>例句： </p>
+<p>1）石头滚了下来<br>2）六鷁退飞过宋都<br>3）她把秘密藏在心里<br>4）大哥，你想开着点，……不必紧自往死牛犄角里钻<br>5）The pencil rolled off the table<br>6）The pencil lay on the table<br>7）The ball rolled down the hill<br>8）The napkin blew off the table  </p>
+<p>1）“滚”表示位移+方式，“下”表示路径；3）“roll”表示位移+方式，“off”表示路径 </p>
+<p>通常，在位移事件中，如果位移动词表示动作+方式，则需补充小品词表示路径；同样，如果位移动词表示动作+路径，则方式、原因等需要补充其他词表示 </p>
+<p>9）南宮适出，子曰：“君子哉若人！尚德哉若人！”《论语》<br>“出”表示位移+路径<br>10）鸟见之高飞，麋鹿见之决骤《庄子》<br>“骤”表示位移+方式<br>11）孔子下车而前，见谒者曰：“鲁人孔丘，闻将军高义，敬再拜谒者”《庄子·盗跖》<br>“前”表示位移+路径<br>12）诸侯之师败郑徒兵，取其禾而还《左传》<br>“还”表示位移+路径 </p>
+<p>……</p>
+<p>本人认为，关于动词框架语言与卫星框架语言的分析思路，如果不限定位移事件的分析，可以扩展到其他事件，比如致使事件的分析中（貌似位移事件与致使事件具有同源性，即基于同一原型框架） </p>
+<p>通常在致使事件中，其动词也不单纯具有表示动作的功能，而往往兼具有其他语义信息，诸如原因、工具、效果等 </p>
+<p>……</p>
+
+      
+    </main>
+    <footer class="post-footer">
+      
+      <div class="post-tags">
+        
+        <a class="post-tag button" href="/tags/隐喻/" rel="tag"><i class="fas fa-tags"></i>隐喻</a>
+        
+      </div>
+      
+    </footer>
+  </article>
+  
+  <article class="article post card" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/06/自制聊天软件/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="hedgehog">
+        <meta itemprop="description" content="程序爱好者">
+        <meta itemprop="image" content="/images/avatar.png">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="chenying99'blog">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2018/12/06/自制聊天软件/" itemprop="url">自制聊天软件</a>
+      </h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2018-12-06T17:33:18+08:00">2018-12-06 17:33:18</time></span>
+        </span>
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-categories">
+          
+          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/java/" itemprop="url" rel="index"><span itemprop="name">java</span></a></span>
+        </span>
+        
+        
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      
+      <p>SWing +Netty<br><img src="/images/20181206083712.png" alt><br><img src="/images/20181206083723.jpg" alt></p>
+
+      
+    </main>
+    <footer class="post-footer">
+      
+      <div class="post-tags">
+        
+        <a class="post-tag button" href="/tags/Netty/" rel="tag"><i class="fas fa-tags"></i>Netty</a>
+        
+      </div>
+      
+    </footer>
+  </article>
+  
+  <article class="article post card" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/03/抽取网页正文内容测试/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="hedgehog">
+        <meta itemprop="description" content="程序爱好者">
+        <meta itemprop="image" content="/images/avatar.png">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="chenying99'blog">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2018/12/03/抽取网页正文内容测试/" itemprop="url">抽取网页正文内容测试</a>
+      </h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2018-12-03T17:33:18+08:00">2018-12-03 17:33:18</time></span>
+        </span>
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-categories">
+          
+          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/java/" itemprop="url" rel="index"><span itemprop="name">java</span></a></span>
+        </span>
+        
+        
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      
+      <p><img src="/images/20181205021140.jpg" alt><br><img src="/images/20181205021158.jpg" alt><br><img src="/images/20181205021204.jpg" alt><br><img src="/images/20181205021210.jpg" alt><br><img src="/images/20181205021215.jpg" alt></p>
+
+      
+    </main>
+    <footer class="post-footer">
+      
+      <div class="post-tags">
+        
+        <a class="post-tag button" href="/tags/SWing/" rel="tag"><i class="fas fa-tags"></i>SWing</a>
+        
+      </div>
+      
+    </footer>
+  </article>
+  
+  <article class="article post card" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/08/“知如见”的隐喻现象/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="hedgehog">
+        <meta itemprop="description" content="程序爱好者">
+        <meta itemprop="image" content="/images/avatar.png">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="chenying99'blog">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2018/11/08/“知如见”的隐喻现象/" itemprop="url">“知如见”的隐喻现象</a>
+      </h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2018-11-08T17:33:18+08:00">2018-11-08 17:33:18</time></span>
+        </span>
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-categories">
+          
+          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/语言学/" itemprop="url" rel="index"><span itemprop="name">语言学</span></a></span>
+        </span>
+        
+        
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      
+      <p>以下是现代汉语语料库中，与“看”有关的语句，列举数例如下： </p>
+<p>1a. 我看见她走了过来，脸上挂着两行泪痕<br>1b. 因为我知道，这将是我最后一次看见她。眼中不住的淌出的热泪。<br>1c. 可说是只看见了结果，却没看见过程。<br>1d. 在黄叶一样的茶中，我们似乎看见了一位宗师的婆心，看见了生活，也看见了生命的滋味。 </p>
+<p>2a. 因居高临下，看清了还有条岔路通往右边的山傍。<br>2b. 在晚上我们可以看清浩瀚的星海。<br>2c. 这样你就能以明亮之眼去看清生活、工作和生命的真实面。<br>2d. 头脑清楚的人终于慢慢看清了事实。 </p>
+<p>后面几个例子中的“看”已经超出了生理视觉意义，引申有抽象的思维或理解之语言。我们可以将其归类为“理解是见”的概念隐喻。 </p>
+<p>英文中也有类似的隐喻现象： </p>
+<ol>
+<li>I see what you’re saying.(我明白你的话) </li>
+<li>It looks different from my point of view.(我的观点不同) </li>
+<li>What is your outlook?(你的观点(看法)是什么？) </li>
+</ol>
+<p>下面是引自古汉语文献中的语句及词汇： </p>
+<p>《论语》“父在，观其志”、“观过，斯知仁矣”<br>《老子》“涤除玄览，能无疵乎？” 、“致虚极，守静笃，万物并作，吾以观复”<br>”观念“、”观点“、”看法“、”看懂“、”见解“、”正见“、”邪见“、”慧眼“、”法眼“、“眼界”、”青睐“、”一心三观“、”法界观“、”应作如是观“ </p>
+<p>参考《觀念與味道：中國思想文獻中的概念譬喻管窺》</p>
+
+      
+    </main>
+    <footer class="post-footer">
+      
+      <div class="post-tags">
+        
+        <a class="post-tag button" href="/tags/隐喻/" rel="tag"><i class="fas fa-tags"></i>隐喻</a>
+        
+      </div>
+      
+    </footer>
+  </article>
+  
+  <article class="article post card" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/13/英汉存现句的认知分析/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="hedgehog">
+        <meta itemprop="description" content="程序爱好者">
+        <meta itemprop="image" content="/images/avatar.png">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="chenying99'blog">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2018/09/13/英汉存现句的认知分析/" itemprop="url">英汉存现句的认知分析</a>
+      </h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2018-09-13T02:33:18+08:00">2018-09-13 02:33:18</time></span>
+        </span>
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-categories">
+          
+          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/语言学/" itemprop="url" rel="index"><span itemprop="name">语言学</span></a></span>
+        </span>
+        
+        
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      
+      <p>“主席团坐在台上”、“台上坐着主席团”，这是什么语言现象？  </p>
+<p>据说五六十年代我国老一辈语言学家争论，上面不同的两句，谁是主语、谁是谓语？争来争去也没争个所以然来<br>这些死脑筋，一个句子一定要“主谓宾”五脏俱全么？<br>通常“主谓宾”是“施事-动作-受事”这一认知概念的语法化  </p>
+<p>而上面的句子所体现的是表示事物的存在，即所谓存现句，是“图像-背景”这一认知概念的语法化</p>
+<p>其中，“主题团坐在台上”，“主席团”是角色原型，是认知参照物，是已知的，“台上”是未知的；<br>而“台上坐着主席团”，“台上”是角色原型，作为认知参照物，“主席团”是未知的  </p>
+<p>英语中，”there is a book on the table”,这里英语存现句中，是图像在前，而背景在后；通常背景是已知的、无界的，而图像是未知的、有界的</p>
+
+      
+    </main>
+    <footer class="post-footer">
+      
+      <div class="post-tags">
+        
+        <a class="post-tag button" href="/tags/存现句/" rel="tag"><i class="fas fa-tags"></i>存现句</a>
+        
+      </div>
+      
+    </footer>
+  </article>
+  
+  <article class="article post card" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/13/汉语位移事件的词化方式/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="hedgehog">
+        <meta itemprop="description" content="程序爱好者">
+        <meta itemprop="image" content="/images/avatar.png">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="chenying99'blog">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2018/09/13/汉语位移事件的词化方式/" itemprop="url">汉语位移事件的词化方式</a>
+      </h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2018-09-13T01:48:09+08:00">2018-09-13 01:48:09</time></span>
+        </span>
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-categories">
+          
+          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/语言学/" itemprop="url" rel="index"><span itemprop="name">语言学</span></a></span>
+        </span>
+        
+        
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      
+      <p>位移事件通常包括射体、界标、位移、路径、方式、原因等，由于不同语言的认知模式的差异，而形成不同的词化方式<br>按照talmy的说法，按动词是否包含路径分为动词框架语言与卫星框架语言  </p>
+<p>陨石于宋五，六鷁退飞过宋都<br>十有六年春，王正月戊申朔，陨石于宋五。是月，六鹢退飞，过宋都。曷为先言陨而后言石？陨石记闻，闻其嗔然，视之则石，察之则五。是月者何？仅逮是月也。何以不日？晦日也。晦则何以不言晦？《春秋》不书晦也。朔有事则书，晦虽有事不书。曷为先言六而后言鹢？六鹢退飞，记见也，视之则六，察之则鹢，徐而察之则退飞。五石六鹢，何以书？记异也。外异不书，此何以书？为王者之后，记异也。（《公羊传·僖公十六年》）<br>其中“六鷁”为射体，“宋都”为界标，”退飞”包含位移与方式，“【过】宋都”则为路径</p>
+
+      
+    </main>
+    <footer class="post-footer">
+      
+      <div class="post-tags">
+        
+        <a class="post-tag button" href="/tags/位移事件/" rel="tag"><i class="fas fa-tags"></i>位移事件</a>
+        
+      </div>
+      
+    </footer>
+  </article>
+  
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/5/"><i class="fas fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/7/"><i class="fas fa-angle-right" aria-label="下一页"></i></a>
+  </nav>
+  
+  
+  
+
+<div class="comments" id="comments">
+  
+  
+  
+</div>
+
+
+
+  
+</div>
+
+          </div>
+          
+          
+          
+<aside class="sidebar" id="sidebar" style="background: url(/images/background.png);">
+  
+  <div class="search">
+    <div class="form-group">
+      <i class="fas fa-search"></i><input type="search" id="search-input" name="q" results="0" placeholder="搜索" class="form-control">
+    </div>
+  </div>
+  <div class="search-result-box" id="search-result"></div>
+  
+  
+<div class="info sidebar-item" id="info">
+  
+  <img class="author-avatar" src="/images/avatar.png" alt="hedgehog">
+  
+  <h1 class="author-name">hedgehog</h1>
+  <h2 class="author-description">程序爱好者</h2>
+  <div class="site-count">
+    
+    <div class="archives-count">
+      <div class="site-count-title">归档</div>
+      <div><a href="/archives/">64</a></div>
+    </div>
+    
+    
+    
+    <span class="site-count-divider divider">|</span>
+    
+    <div class="categories-count">
+      <div class="site-count-title">分类</div>
+      <div><a href="/categories/">10</a></div>
+    </div>
+    
+    
+    
+    <span class="site-count-divider divider">|</span>
+    
+    <div class="tags-count">
+      <div class="site-count-title">标签</div>
+      <div><a href="/tags/">25</a></div>
+    </div>
+    
+  </div>
+  
+  <div class="rss">
+    <a class="rss-link button sidebar-item" href="/atom.xml"><i class="fas fa-rss"></i>RSS</a>
+  </div>
+  
+</div>
+
+
+  <div class="sidebar-sticky">
+    
+    
+    <hr>
+    <div class="social-link sidebar-item">
+      <div><i class="far fa-address-card"></i>社交链接<p></p></div>
+      <ul>
+        
+        <li><i class="fas fa-envelope"></i><a href="mailto:chenying998179@foxmail.com" target="_blank">E-Mail</a></li>
+        
+        <li><i class="fab fa-github"></i><a href="https://github.com/" target="_blank">GitHub</a></li>
+        
+        <li><i class="fab fa-weibo"></i><a href="https://weibo.com/" target="_blank">Weibo</a></li>
+        
+      </ul>
+    </div>
+    
+    
+    <hr>
+    <div class="blogroll sidebar-item">
+      <div><i class="fas fa-link"></i>友情链接</div>
+      <ul>
+        
+        <li><i class="fas fa-link"></i><a href="https://github.com/" target="_blank">GitHub</a></li>
+        
+        <li><i class="fas fa-link"></i><a href="https://developer.mozilla.org/" target="_blank">MDN</a></li>
+        
+        <li><i class="fas fa-link"></i><a href="https://mozilla.github.io/nunjucks/" target="_blank">Nunjucks</a></li>
+        
+      </ul>
+    </div>
+    
+  </div>
+</aside>
+
+
+          
+        </div>
+      </div>
+    </main>
+    
+<footer id="footer" class="footer" style="background: #33363b;">
+  <div class="container">
+    <div class="back-to-top">
+      <button id="back-to-top"><i class="fas fa-angle-double-up" aria-label="回到顶部"></i></button>
+    </div>
+    <div class="footer-container">
+      <div class="footer-left">
+        <div class="copyright">
+          <span class="author">hedgehog</span><span class="year"><i class="far fa-copyright"></i>2026</span>
+        </div>
+        
+        <div class="busuanzi">
+          <span id="busuanzi_container_site_pv"><i class="fas fa-eye" aria-label="站点点击量" aria-hidden="false"></i><span id="busuanzi_value_site_pv"></span></span><span id="busuanzi_container_site_uv"><i class="fas fa-user" aria-label="站点用户数" aria-hidden="false"></i><span id="busuanzi_value_site_uv"></span></span><span id="busuanzi_container_page_pv"><i class="far fa-file-alt"></i><span id="busuanzi_value_page_pv" aria-label="页面点击量" aria-hidden="false"></span></span>
+        </div>
+        
+      </div>
+      <div class="footer-right">
+        <div class="custom-info">
+          
+          托管于<i class="fab fa-github-alt"></i><a href="https://pages.github.com/" target="_blank">GitHub Pages</a>
+          
+        </div>
+        <div class="powered-by">
+          由 <a href="https://hexo.io/" target="_blank">Hexo</a> 强力驱动 | 主题 <a href="https://github.com/AlynxZhou/hexo-theme-aria/" target="_blank">ARIA</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+  </body>
+</html>
