@@ -129,69 +129,6 @@
   
   <article class="article post card" itemscope itemtype="http://schema.org/Article">
     <div class="post-block">
-      <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/21/opencv4-0-0图像处理：图像目标尺寸检测java版（四）/">
-      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <meta itemprop="name" content="hedgehog">
-        <meta itemprop="description" content="程序爱好者">
-        <meta itemprop="image" content="/images/avatar.png">
-      </span>
-      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-        <meta itemprop="name" content="chenying99'blog">
-      </span>
-    </div>
-    <header class="post-header">
-      <h1 class="post-title" itemprop="name headline">
-        <a class="post-title-link post-title-link-external" href="/2019/05/21/opencv4-0-0图像处理：图像目标尺寸检测java版（四）/" itemprop="url">opencv4.0.0图像处理：图像目标尺寸检测java版（四）</a>
-      </h1>
-      <div class="post-meta">
-        
-        <span class="post-date">
-          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2019-05-21T08:24:21+08:00">2019-05-21 08:24:21</time></span>
-        </span>
-        
-        
-        
-        <span class="post-meta-divider divider">|</span>
-        
-        <span class="post-categories">
-          
-          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/opencv/" itemprop="url" rel="index"><span itemprop="name">opencv</span></a></span>
-        </span>
-        
-        
-        
-        
-      </div>
-    </header>
-    <main class="post-main" itemprop="articleBody">
-      
-      <p>以前在网上浏览到一篇英文文章，讲的是如何利用opencv实现图像目标尺寸检测，不过原文的实现代码是python；对于java程序员来说不方便调用，故本人采用java语言实现了同样的功能（由于精力及技术问题，延至今日才有java版本的实现），代码未有完善之处，如相关方法的参数值等，尚需后续补充 </p>
-<p>原文地址：<a href="https://www.pyimagesearch.com/2016/03/28/measuring-size-of-objects-in-an-image-with-opencv/" target="_blank" rel="noopener">https://www.pyimagesearch.com/2016/03/28/measuring-size-of-objects-in-an-image-with-opencv/</a><br>在此感谢原作者及网上相关参考文章（特别是雷锋网的翻译版本，貌似链接已经失效） </p>
-<p>其基本思路是先获取图片中图像目标的轮廓，然后获取其旋转矩阵，并对旋转矩阵的坐标顺时针排序，然后获取其矩阵边框的中点坐标，最后是计算对称中点的欧氏距离（像素），最后再根据参照物的像素与英寸的比例计算实际距离 </p>
-<p>部分java代码 </p>
-<figure class="hljs highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * 图像目标尺寸检测</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@param</span> args</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//Mat image = imread("images/test6.png");</span></span><br><span class="line">		Mat image = imread(<span class="string">"images/example_01.png"</span>);</span><br><span class="line">		Mat gray = <span class="keyword">new</span> Mat();</span><br><span class="line">		Imgproc.cvtColor(image, gray, Imgproc.COLOR_BGR2GRAY);</span><br><span class="line">		</span><br><span class="line">		Imgproc.GaussianBlur(gray, gray, <span class="keyword">new</span> Size(<span class="number">7</span>,<span class="number">7</span>), <span class="number">0</span>);</span><br><span class="line">		</span><br><span class="line">		Mat edges = <span class="keyword">new</span> Mat();</span><br><span class="line">		Imgproc.Canny(image, edges, <span class="number">50</span>, <span class="number">150</span>);</span><br><span class="line">		<span class="comment">//Imgproc.Canny(image, edges,100.0, 200.0,3,true);</span></span><br><span class="line">		</span><br><span class="line">		Mat kernel1=Imgproc.getStructuringElement(Imgproc.MORPH_RECT, <span class="keyword">new</span> Size(<span class="number">8</span>,<span class="number">8</span>), <span class="keyword">new</span> Point(<span class="number">4</span>,<span class="number">4</span>));</span><br><span class="line">		Imgproc.dilate(edges, edges, kernel1 ,<span class="keyword">new</span> Point(-<span class="number">1</span>,-<span class="number">1</span>),<span class="number">1</span>);</span><br><span class="line">		</span><br><span class="line">		Mat kernel=Imgproc.getStructuringElement(Imgproc.MORPH_RECT, <span class="keyword">new</span> Size(<span class="number">9</span>,<span class="number">9</span>), <span class="keyword">new</span> Point(-<span class="number">1</span>,-<span class="number">1</span>));</span><br><span class="line">		Imgproc.erode(edges, edges, kernel,<span class="keyword">new</span> Point(-<span class="number">1</span>,-<span class="number">1</span>),<span class="number">1</span>);	</span><br><span class="line">		</span><br><span class="line">		List&lt;MatOfPoint&gt; contours = <span class="keyword">new</span> ArrayList&lt;MatOfPoint&gt;();</span><br><span class="line">		Imgproc.findContours(edges.clone(), contours, <span class="keyword">new</span> Mat(), Imgproc.RETR_EXTERNAL, Imgproc.CHAIN_APPROX_SIMPLE);</span><br><span class="line">		<span class="comment">//……</span></span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
-<p>最后效果如图：<br><img src="/images/example1.png" alt> </p>
-<p>我们发现，其中的测量对象的尺寸并不是百分之百准确，原文分析了两个原因： </p>
-<p>1）图像的拍摄视角问题，不是绝对的90度角度 </p>
-<p>2）拍摄相机的相关参数校准问题 </p>
-
-      
-    </main>
-    <footer class="post-footer">
-      
-      <div class="post-tags">
-        
-        <a class="post-tag button" href="/tags/图像处理/" rel="tag"><i class="fas fa-tags"></i>图像处理</a>
-        
-        <a class="post-tag button" href="/tags/opencv/" rel="tag"><i class="fas fa-tags"></i>opencv</a>
-        
-      </div>
-      
-    </footer>
-  </article>
-  
-  <article class="article post card" itemscope itemtype="http://schema.org/Article">
-    <div class="post-block">
       <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/19/opencv4-0-0图像处理：人脸识别（三）/">
       <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
         <meta itemprop="name" content="hedgehog">
@@ -733,6 +670,71 @@
     </footer>
   </article>
   
+  <article class="article post card" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/08/“知如见”的隐喻现象/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="hedgehog">
+        <meta itemprop="description" content="程序爱好者">
+        <meta itemprop="image" content="/images/avatar.png">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="chenying99'blog">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2018/11/08/“知如见”的隐喻现象/" itemprop="url">“知如见”的隐喻现象</a>
+      </h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2018-11-08T17:33:18+08:00">2018-11-08 17:33:18</time></span>
+        </span>
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-categories">
+          
+          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/语言学/" itemprop="url" rel="index"><span itemprop="name">语言学</span></a></span>
+        </span>
+        
+        
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      
+      <p>以下是现代汉语语料库中，与“看”有关的语句，列举数例如下： </p>
+<p>1a. 我看见她走了过来，脸上挂着两行泪痕<br>1b. 因为我知道，这将是我最后一次看见她。眼中不住的淌出的热泪。<br>1c. 可说是只看见了结果，却没看见过程。<br>1d. 在黄叶一样的茶中，我们似乎看见了一位宗师的婆心，看见了生活，也看见了生命的滋味。 </p>
+<p>2a. 因居高临下，看清了还有条岔路通往右边的山傍。<br>2b. 在晚上我们可以看清浩瀚的星海。<br>2c. 这样你就能以明亮之眼去看清生活、工作和生命的真实面。<br>2d. 头脑清楚的人终于慢慢看清了事实。 </p>
+<p>后面几个例子中的“看”已经超出了生理视觉意义，引申有抽象的思维或理解之语言。我们可以将其归类为“理解是见”的概念隐喻。 </p>
+<p>英文中也有类似的隐喻现象： </p>
+<ol>
+<li>I see what you’re saying.(我明白你的话) </li>
+<li>It looks different from my point of view.(我的观点不同) </li>
+<li>What is your outlook?(你的观点(看法)是什么？) </li>
+</ol>
+<p>下面是引自古汉语文献中的语句及词汇： </p>
+<p>《论语》“父在，观其志”、“观过，斯知仁矣”<br>《老子》“涤除玄览，能无疵乎？” 、“致虚极，守静笃，万物并作，吾以观复”<br>”观念“、”观点“、”看法“、”看懂“、”见解“、”正见“、”邪见“、”慧眼“、”法眼“、“眼界”、”青睐“、”一心三观“、”法界观“、”应作如是观“ </p>
+<p>参考《觀念與味道：中國思想文獻中的概念譬喻管窺》</p>
+
+      
+    </main>
+    <footer class="post-footer">
+      
+      <div class="post-tags">
+        
+        <a class="post-tag button" href="/tags/隐喻/" rel="tag"><i class="fas fa-tags"></i>隐喻</a>
+        
+      </div>
+      
+    </footer>
+  </article>
+  
   
   <nav class="pagination">
     <a class="extend prev" rel="prev" href="/page/5/"><i class="fas fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/7/"><i class="fas fa-angle-right" aria-label="下一页"></i></a>
@@ -776,7 +778,7 @@
     
     <div class="archives-count">
       <div class="site-count-title">归档</div>
-      <div><a href="/archives/">67</a></div>
+      <div><a href="/archives/">66</a></div>
     </div>
     
     
