@@ -129,6 +129,148 @@
   
   <article class="article post card" itemscope itemtype="http://schema.org/Article">
     <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://yoursite.com/2026/05/23/Most Voice Cloning Systems Are Solving the Wrong Problem/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="hedgehog">
+        <meta itemprop="description" content="程序爱好者">
+        <meta itemprop="image" content="/images/avatar.png">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="chenying99'blog">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2026/05/23/Most Voice Cloning Systems Are Solving the Wrong Problem/" itemprop="url">Most Voice Cloning Systems Are Solving the Wrong Problem</a>
+      </h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2026-05-23T19:36:39+08:00">2026-05-23 19:36:39</time></span>
+        </span>
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-categories">
+          
+          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/深度学习/" itemprop="url" rel="index"><span itemprop="name">深度学习</span></a></span><i class="fas fa-angle-right"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/语音合成TTS/" itemprop="url" rel="index"><span itemprop="name">语音合成TTS</span></a></span>
+        </span>
+        
+        
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      
+      <h1 id="Most-Voice-Cloning-Systems-Are-Solving-the-Wrong-Problem"><a href="#Most-Voice-Cloning-Systems-Are-Solving-the-Wrong-Problem" class="headerlink" title="Most Voice Cloning Systems Are Solving the Wrong Problem"></a>Most Voice Cloning Systems Are Solving the Wrong Problem</h1><h2 id="VoxFlash-TTS-compresses-audio-latent-space-to-9-Hz-—-and-it-changes-everything-about-inference-speed"><a href="#VoxFlash-TTS-compresses-audio-latent-space-to-9-Hz-—-and-it-changes-everything-about-inference-speed" class="headerlink" title="VoxFlash-TTS compresses audio latent space to 9 Hz — and it changes everything about inference speed"></a>VoxFlash-TTS compresses audio latent space to 9 Hz — and it changes everything about inference speed</h2><p><em>Text-to-Speech · Deep Learning · Edge Deployment · 2026</em></p>
+<hr>
+<p>Most people building with TTS assume slow inference is just the cost of quality. Pick a good voice cloning system, accept that it needs a beefy cloud GPU, and move on.</p>
+<p>VoxFlash-TTS is built on a different premise: <strong>the real bottleneck isn’t model quality — it’s sequence length.</strong></p>
+<p>Here’s the problem. Whether you’re using Flow Matching or standard Diffusion for speech synthesis, computational complexity scales with the length of your audio token sequence. And most systems today still operate at token densities that make real-time inference on consumer hardware essentially impossible.</p>
+<p>VoxFlash asked a simple question: <em>what happens if you compress the sequence to the extreme?</em></p>
+<p>The answer turns out to be pretty compelling.</p>
+<hr>
+<h2 id="The-Core-Idea-9-Hz-Latent-Space"><a href="#The-Core-Idea-9-Hz-Latent-Space" class="headerlink" title="The Core Idea: 9 Hz Latent Space"></a>The Core Idea: 9 Hz Latent Space</h2><p>The centerpiece of VoxFlash is a VAE that encodes 24kHz raw waveforms into a latent representation running at just <strong>9 frames per second</strong>.</p>
+<p>To put that in context:</p>
+<ul>
+<li>EnCodec operates at ~75 fps</li>
+<li>Most speech language model semantic tokens: ~50 fps</li>
+<li>Stable Audio’s continuous latent space: ~21.5 fps</li>
+<li><strong>VoxFlash: 9 fps</strong></li>
+</ul>
+<p>That 9 Hz figure means generating 10 seconds of audio requires the diffusion model to process only <strong>90 latent vectors</strong> — not hundreds, not thousands. Just 90.</p>
+<p>Why does this matter so much? Because the computational cost reduction is superlinear. Transformer self-attention scales at O(n²) with sequence length, and Diffusion U-Net convolutions aren’t far behind. Cutting the sequence by 8× doesn’t reduce compute by 8× — it reduces it by far more. VoxFlash describes the reduction as “orders of magnitude,” and at the sequence level, that’s accurate.</p>
+<p>The obvious question: does audio quality survive such aggressive compression? The VAE Decoder is where most of the engineering effort goes — carefully designed reconstruction losses and perceptual quality optimization are what keep high-fidelity output possible despite the extreme bottleneck. It’s the hardest part of the system, and arguably the most impressive.</p>
+<hr>
+<h2 id="The-Alignment-Problem-and-How-VoxFlash-Solves-It-Cheaply"><a href="#The-Alignment-Problem-and-How-VoxFlash-Solves-It-Cheaply" class="headerlink" title="The Alignment Problem (and How VoxFlash Solves It Cheaply)"></a>The Alignment Problem (and How VoxFlash Solves It Cheaply)</h2><p>Beyond the VAE, TTS systems face a second fundamental challenge: <strong>temporal alignment</strong>. You need to map a variable-length phoneme sequence onto a variable-length audio sequence, and the two don’t correspond in any simple way.</p>
+<p>Most modern high-quality systems (NaturalSpeech2, Voicebox) use Cross-Attention for implicit alignment. It’s flexible and produces natural-sounding results — but the compute cost scales with the product of both sequence lengths.</p>
+<p>VoxFlash takes a different path: a <strong>coarse-grained explicit alignment algorithm</strong> that trades a small amount of flexibility for a significant reduction in alignment complexity. Paired with a <strong>ConvNeXtV2</strong>-based phoneme encoder (lower parameter count and better hardware utilization than a Transformer encoder), the full pipeline stays lean even before you factor in the latent compression.</p>
+<p>The generation stage uses standard multi-step diffusion (NFE=16 by default) — iterative denoising in latent space, then a VAE Decoder pass back to waveform. Every step in the chain is lighter than its counterparts in comparable systems.</p>
+<hr>
+<h2 id="Zero-Shot-Voice-Cloning-Across-Languages"><a href="#Zero-Shot-Voice-Cloning-Across-Languages" class="headerlink" title="Zero-Shot Voice Cloning Across Languages"></a>Zero-Shot Voice Cloning Across Languages</h2><p>VoxFlash supports <strong>zero-shot cloning in both Chinese (Mandarin) and English</strong>, with no fine-tuning required for target speakers.</p>
+<p>The process is straightforward: provide a reference audio clip, extract a speaker embedding, inject it into the diffusion process, and the output speech matches the target voice. More interestingly, <strong>cross-lingual cloning works too</strong> — Chinese reference audio can drive English output, and vice versa.</p>
+<p>That cross-lingual capability is significant. It implies the model has meaningfully disentangled voice timbre from language identity, which is non-trivial to achieve in a lightweight architecture. The demo samples are drawn directly from the Seed-TTS evaluation set, so you can do a direct apples-to-apples comparison with heavier systems.</p>
+<hr>
+<h2 id="Getting-It-Running"><a href="#Getting-It-Running" class="headerlink" title="Getting It Running"></a>Getting It Running</h2><p>This is where VoxFlash earns its “edge-friendly” label. Low-end GPU support isn’t a marketing afterthought — the 9 Hz latent space directly determines that VRAM footprint and compute peaks stay low. A consumer-grade GPU that would choke on most voice cloning systems can run this comfortably.</p>
+<p>Deployment is Docker-based:</p>
+<figure class="hljs highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Requires CUDA &gt;= 12.3.2</span></span><br><span class="line">docker pull berlinisaiah/ttsv2:v1</span><br><span class="line"></span><br><span class="line"><span class="comment"># Production (background)</span></span><br><span class="line">docker container run -d --gpus all \</span><br><span class="line">  --mount <span class="built_in">type</span>=<span class="built_in">bind</span>,<span class="built_in">source</span>=$(<span class="built_in">pwd</span>)/resources,target=/app/resources \</span><br><span class="line">  -p 8000:8000 berlinisaiah/ttsv2:v1</span><br><span class="line"></span><br><span class="line"><span class="comment"># Debug (foreground)</span></span><br><span class="line">docker container run -it --gpus all \</span><br><span class="line">  --mount <span class="built_in">type</span>=<span class="built_in">bind</span>,<span class="built_in">source</span>=$(<span class="built_in">pwd</span>)/resources,target=/app/resources \</span><br><span class="line">  -p 8000:8000 berlinisaiah/ttsv2:v1</span><br></pre></td></tr></table></figure>
+<p>Open <code>http://127.0.0.1:8000/demo.html</code> and you’re in.</p>
+<h3 id="Where-it-fits-well"><a href="#Where-it-fits-well" class="headerlink" title="Where it fits well"></a>Where it fits well</h3><table>
+<thead>
+<tr>
+<th>Use Case</th>
+<th>Key Metric</th>
+<th>Why VoxFlash Fits</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Real-time voice interaction</td>
+<td>First-packet latency</td>
+<td>Short latent sequences, fewer diffusion steps</td>
+</tr>
+<tr>
+<td>Large-scale batch synthesis</td>
+<td>Throughput, GPU cost</td>
+<td>Orders-of-magnitude compute gap</td>
+</tr>
+<tr>
+<td>Edge / on-device deployment</td>
+<td>VRAM, power draw</td>
+<td>Lightweight architecture, low-end GPU capable</td>
+</tr>
+<tr>
+<td>Individual developers</td>
+<td>Deployment complexity</td>
+<td>One Docker command, no tuning needed</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="Where-VoxFlash-Sits-in-the-Landscape"><a href="#Where-VoxFlash-Sits-in-the-Landscape" class="headerlink" title="Where VoxFlash Sits in the Landscape"></a>Where VoxFlash Sits in the Landscape</h2><p>The voice cloning space currently clusters around two poles:</p>
+<p><strong>Quality-first systems</strong> (Seed-TTS, CosyVoice 2) push speaker similarity and naturalness as far as possible. They’re impressive — and they typically need cloud GPU clusters to run at production scale.</p>
+<p><strong>Speed-first systems</strong> (various FastSpeech derivatives) are fast but sacrifice cloning fidelity and language generalization to get there.</p>
+<p>VoxFlash occupies a third position: <strong>push inference to the engineering-feasible limit while keeping audio quality acceptable, and make that speed achievable on consumer hardware</strong>. It’s not trying to beat Seed-TTS on MOS scores. It’s trying to be the system you can actually ship on a budget.</p>
+<p>That’s a real gap in the current ecosystem, and it’s a useful one to fill.</p>
+<hr>
+<h2 id="What-to-Take-Away"><a href="#What-to-Take-Away" class="headerlink" title="What to Take Away"></a>What to Take Away</h2><p>Four things make VoxFlash-TTS worth paying attention to:</p>
+<ol>
+<li><strong>9 Hz extreme temporal compression</strong> — the latent sequence is short enough that the compute reduction is superlinear, not just proportional</li>
+<li><strong>Lightweight generation pipeline</strong> — ConvNeXtV2 phoneme encoder + coarse-grained alignment + latent diffusion, all designed to stay lean</li>
+<li><strong>Zero-shot bilingual cloning</strong> — voice timbre and language identity are sufficiently disentangled that cross-lingual cloning works without fine-tuning</li>
+<li><strong>Engineering-first design</strong> — Docker deployment, consumer GPU support, built for real deployment constraints rather than benchmark conditions</li>
+</ol>
+<p>For engineering teams that need voice cloning in resource-constrained environments, or researchers who want a fast local TTS baseline to build on, VoxFlash-TTS is worth serious evaluation.</p>
+<hr>
+<p><strong>Try it yourself</strong></p>
+<ul>
+<li>🌐 Demo: <a href="https://voxflash.github.io/" target="_blank" rel="noopener">voxflash.github.io</a></li>
+<li>📦 GitHub: <a href="https://github.com/VoxFlash/VoxFlashTTS" target="_blank" rel="noopener">github.com/VoxFlash/VoxFlashTTS</a></li>
+<li>🤗 Hugging Face: <a href="https://huggingface.co/VoxFlashTTS/VoxFlashTTS" target="_blank" rel="noopener">huggingface.co/VoxFlashTTS/VoxFlashTTS</a></li>
+</ul>
+
+      
+    </main>
+    <footer class="post-footer">
+      
+      <div class="post-tags">
+        
+        <a class="post-tag button" href="/tags/语音合成/" rel="tag"><i class="fas fa-tags"></i>语音合成</a>
+        
+        <a class="post-tag button" href="/tags/深度学习/" rel="tag"><i class="fas fa-tags"></i>深度学习</a>
+        
+        <a class="post-tag button" href="/tags/端侧部署/" rel="tag"><i class="fas fa-tags"></i>端侧部署</a>
+        
+      </div>
+      
+    </footer>
+  </article>
+  
+  <article class="article post card" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
       <link itemprop="mainEntityOfPage" href="http://yoursite.com/2026/05/21/VoxFlash-TTS：用超压缩潜空间扩散重新定义语音克隆的推理边界/">
       <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
         <meta itemprop="name" content="hedgehog">
@@ -466,7 +608,7 @@
         
         <span class="post-categories">
           
-          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a></span><i class="fas fa-angle-right"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/深度学习/" itemprop="url" rel="index"><span itemprop="name">深度学习</span></a></span>
+          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/深度学习/" itemprop="url" rel="index"><span itemprop="name">深度学习</span></a></span><i class="fas fa-angle-right"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a></span>
         </span>
         
         
@@ -533,7 +675,7 @@
         
         <span class="post-categories">
           
-          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a></span><i class="fas fa-angle-right"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/深度学习/" itemprop="url" rel="index"><span itemprop="name">深度学习</span></a></span>
+          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/深度学习/" itemprop="url" rel="index"><span itemprop="name">深度学习</span></a></span><i class="fas fa-angle-right"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a></span>
         </span>
         
         
@@ -595,7 +737,7 @@
         
         <span class="post-categories">
           
-          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a></span><i class="fas fa-angle-right"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/深度学习/" itemprop="url" rel="index"><span itemprop="name">深度学习</span></a></span>
+          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/深度学习/" itemprop="url" rel="index"><span itemprop="name">深度学习</span></a></span><i class="fas fa-angle-right"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a></span>
         </span>
         
         
@@ -661,7 +803,7 @@
         
         <span class="post-categories">
           
-          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a></span><i class="fas fa-angle-right"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/深度学习/" itemprop="url" rel="index"><span itemprop="name">深度学习</span></a></span>
+          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/深度学习/" itemprop="url" rel="index"><span itemprop="name">深度学习</span></a></span><i class="fas fa-angle-right"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a></span>
         </span>
         
         
@@ -718,7 +860,7 @@
         
         <span class="post-categories">
           
-          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a></span><i class="fas fa-angle-right"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/深度学习/" itemprop="url" rel="index"><span itemprop="name">深度学习</span></a></span>
+          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/深度学习/" itemprop="url" rel="index"><span itemprop="name">深度学习</span></a></span><i class="fas fa-angle-right"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a></span>
         </span>
         
         
@@ -800,60 +942,6 @@
     </footer>
   </article>
   
-  <article class="article post card" itemscope itemtype="http://schema.org/Article">
-    <div class="post-block">
-      <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/13/tensorflow-2-0开发：服饰款式识别（二）/">
-      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <meta itemprop="name" content="hedgehog">
-        <meta itemprop="description" content="程序爱好者">
-        <meta itemprop="image" content="/images/avatar.png">
-      </span>
-      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-        <meta itemprop="name" content="chenying99'blog">
-      </span>
-    </div>
-    <header class="post-header">
-      <h1 class="post-title" itemprop="name headline">
-        <a class="post-title-link post-title-link-external" href="/2019/11/13/tensorflow-2-0开发：服饰款式识别（二）/" itemprop="url">tensorflow 2.0开发：服饰款式识别（二）</a>
-      </h1>
-      <div class="post-meta">
-        
-        <span class="post-date">
-          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2019-11-13T18:21:44+08:00">2019-11-13 18:21:44</time></span>
-        </span>
-        
-        
-        
-        <span class="post-meta-divider divider">|</span>
-        
-        <span class="post-categories">
-          
-          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a></span><i class="fas fa-angle-right"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/深度学习/" itemprop="url" rel="index"><span itemprop="name">深度学习</span></a></span>
-        </span>
-        
-        
-        
-        
-      </div>
-    </header>
-    <main class="post-main" itemprop="articleBody">
-      
-      <p>本文根据官网资料，采用tensorflow 2.0，构建服饰款式识别的深度学习模型，数据集大概是这样的：<br><img src="/images/L3QTqMOJuo.png" alt></p>
-<p>程序代码如下：<br><figure class="hljs highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># TensorFlow and tf.keras</span></span><br><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"><span class="keyword">from</span> tensorflow <span class="keyword">import</span> keras</span><br><span class="line"></span><br><span class="line"><span class="comment"># Helper libraries</span></span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line">print(tf.__version__)</span><br><span class="line"></span><br><span class="line">fashion_mnist = keras.datasets.fashion_mnist</span><br><span class="line"></span><br><span class="line">(train_images, train_labels), (test_images, test_labels) = fashion_mnist.load_data()</span><br><span class="line"></span><br><span class="line">class_names = [<span class="string">'T-shirt/top'</span>, <span class="string">'Trouser'</span>, <span class="string">'Pullover'</span>, <span class="string">'Dress'</span>, <span class="string">'Coat'</span>,</span><br><span class="line">               <span class="string">'Sandal'</span>, <span class="string">'Shirt'</span>, <span class="string">'Sneaker'</span>, <span class="string">'Bag'</span>, <span class="string">'Ankle boot'</span>]</span><br><span class="line"></span><br><span class="line">train_images = train_images/<span class="number">255.0</span></span><br><span class="line">test_images = test_images/<span class="number">255.0</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># plt.imshow(train_images[7],cmap=plt.cm.binary)</span></span><br><span class="line"><span class="comment"># plt.show()</span></span><br><span class="line"></span><br><span class="line">model = keras.Sequential([</span><br><span class="line">    keras.layers.Flatten(input_shape=(<span class="number">28</span>, <span class="number">28</span>)),</span><br><span class="line">    keras.layers.Dense(<span class="number">128</span>, activation=<span class="string">'relu'</span>),</span><br><span class="line">    keras.layers.Dense(<span class="number">10</span>, activation=<span class="string">'softmax'</span>)</span><br><span class="line">])</span><br><span class="line"></span><br><span class="line">model.compile(optimizer=<span class="string">'adam'</span>,</span><br><span class="line">              loss=<span class="string">'sparse_categorical_crossentropy'</span>,</span><br><span class="line">              metrics=[<span class="string">'accuracy'</span>])</span><br><span class="line"></span><br><span class="line">model.summary()</span><br><span class="line"></span><br><span class="line">model.fit(train_images, train_labels, epochs=<span class="number">10</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># test_loss, test_acc = model.evaluate(test_images,  test_labels)</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># print('\nTest accuracy:', test_acc)</span></span><br><span class="line"></span><br><span class="line">predictions = model.predict(test_images)</span><br><span class="line"></span><br><span class="line"><span class="comment"># print(predictions)</span></span><br><span class="line"><span class="comment"># print(predictions[0])</span></span><br><span class="line"><span class="comment"># print(class_names[np.argmax(predictions[0])])</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">5</span>):</span><br><span class="line">    plt.grid(<span class="keyword">False</span>)</span><br><span class="line">    plt.imshow(test_images[i], cmap=plt.cm.binary)</span><br><span class="line">    plt.xlabel(<span class="string">"Actual:"</span>+class_names[test_labels[i]])</span><br><span class="line">    plt.title(<span class="string">"Prediction:"</span>+class_names[np.argmax(predictions[i])])</span><br><span class="line">    plt.show()</span><br></pre></td></tr></table></figure></p>
-
-      
-    </main>
-    <footer class="post-footer">
-      
-      <div class="post-tags">
-        
-        <a class="post-tag button" href="/tags/tensorflow/" rel="tag"><i class="fas fa-tags"></i>tensorflow</a>
-        
-      </div>
-      
-    </footer>
-  </article>
-  
   
   <nav class="pagination">
     <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/2/"><i class="fas fa-angle-right" aria-label="下一页"></i></a>
@@ -897,7 +985,7 @@
     
     <div class="archives-count">
       <div class="site-count-title">归档</div>
-      <div><a href="/archives/">66</a></div>
+      <div><a href="/archives/">67</a></div>
     </div>
     
     
